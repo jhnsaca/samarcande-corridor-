@@ -1,0 +1,31 @@
+/* styles.css - Samarcande Corridor prototype */
+:root{
+  --bleu:#002f4b;--beige:#F5F0E8;--blanc:#FFFFFF;--noir:#0B0B0B;--or:#D6C5A2;--muted:#6b6b6b;--maxw:1200px
+}
+*{box-sizing:border-box}body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;margin:0;color:var(--noir);background:var(--blanc);line-height:1.45}
+.container{max-width:var(--maxw);margin:0 auto;padding:1rem}.site-header{position:sticky;top:0;background:rgba(255,255,255,0.95);border-bottom:1px solid #eee;z-index:60}.site-header .container{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:0.75rem}.site-title{font-weight:700}.subtitle{font-size:0.85rem;color:var(--muted)}.nav{display:flex;gap:1rem;align-items:center}.nav a{text-decoration:none;color:var(--muted);font-weight:600}.cta{background:var(--bleu);color:#fff;padding:0.5rem 0.9rem;border-radius:8px;text-decoration:none;font-weight:700}
+
+/* Hero */
+.hero{padding:3rem 0}.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center}.hero h1{font-size:2.5rem;margin:0;color:var(--blanc);line-height:1.05}.slogan{font-size:1rem;color:rgba(255,255,255,0.85);margin:0.6rem 0 1.25rem}.pitch{max-width:56ch;color:rgba(255,255,255,0.75);margin-bottom:1rem}.primary-cta{display:inline-block;padding:0.7rem 1.1rem;border-radius:10px;background:var(--or);color:var(--noir);text-decoration:none;font-weight:700}.secondary-cta{margin-left:0.6rem;padding:0.55rem 0.9rem;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--or);text-decoration:none;font-weight:600}
+
+/* cards & tiles */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem}.card{background:var(--blanc);border:1px solid #eee;padding:1rem;border-radius:10px;box-shadow:0 6px 20px rgba(2,6,23,0.03)}.card h3{margin:0 0 0.5rem;color:var(--bleu)}.card p{margin:0;color:var(--muted)}.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}.tile{background:linear-gradient(180deg,var(--beige),#fff);padding:1rem;border-radius:12px;border:1px solid rgba(2,6,23,0.04)}.tile .title{font-weight:700;color:var(--noir);margin-bottom:0.5rem}.tile ul{margin:0;padding-left:1.1rem;color:var(--muted)}.more{display:inline-block;margin-top:0.7rem;color:var(--bleu);text-decoration:none;font-weight:700}
+
+/* timeline */
+.timeline{margin-top:1rem}.bar{height:8px;background:#eee;border-radius:8px;position:relative;overflow:hidden}.progress{height:100%;background:linear-gradient(90deg,var(--bleu),var(--or));width:40%}.stages{display:flex;justify-content:space-between;margin-top:0.6rem;font-size:0.9rem;color:var(--muted)}
+
+/* resources & contact */
+.resources{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}.resource{background:#fff;border-radius:10px;padding:1rem;border:1px solid #eee}.contact{background:var(--beige);padding:1.25rem;border-radius:10px}.contact-form{display:grid;gap:0.6rem;max-width:700px}label{display:flex;flex-direction:column;font-size:0.9rem}input,textarea,select{padding:0.6rem;border-radius:8px;border:1px solid #ddd}button[type=submit]{padding:0.7rem 1rem;border-radius:10px;background:var(--bleu);color:#fff;border:none;font-weight:700}
+
+/* footer */
+.site-footer{padding:1.2rem 0;border-top:1px solid #eee;margin-top:2rem}.muted{color:var(--muted)}
+
+/* hero dark specifics */
+.hero-dark{background:linear-gradient(180deg,#00121a,#001a2a);color:#fff;padding:6rem 0 4rem}
+.hero-dark .slogan{color:rgba(255,255,255,0.85)}
+.hero-dark .pitch{color:rgba(255,255,255,0.75)}
+.hero-dark .primary-cta{background:var(--or);color:var(--noir)}
+.hero-dark .secondary-cta{background:transparent;color:var(--or);border:1px solid rgba(255,255,255,0.08)}
+
+/* responsive */
+@media(max-width:950px){.hero-inner{grid-template-columns:1fr}.nav{display:none}}
