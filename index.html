@@ -6,121 +6,160 @@
   <title>Samarcande Corridor — Samarcande Capital</title>
   <meta name="description" content="Samarcande Corridor — Relier les territoires et réinventer la logistique durablement." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Logo Samarcande" style="height:46px;display:block;border-radius:6px">
-        <div>
-          <div class="site-title">Samarcande Capital</div>
-          <div class="subtitle">Hub & Studio Samarcande Corridor</div>
-        </div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <img src="assets/logo.jpg" alt="Logo Samarcande" class="logo">
+      <div class="brand-text">
+        <div class="site-title">Samarcande Capital</div>
+        <div class="subtitle">Hub & Studio Samarcande Corridor</div>
       </div>
-      <nav class="nav">
-        <a href="#vision">Vision</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#decarbonation">Décarbonation</a>
-        <a href="#actors">Acteurs</a>
-        <a class="cta" href="#contact">Contact</a>
-      </nav>
     </div>
-  </header>
+    <nav class="nav">
+      <a href="#vision">Vision</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#energy">Eau & Énergie</a>
+      <a href="#decarbonation">Décarbonation</a>
+      <a href="#actors">Acteurs</a>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+    <button id="menu-toggle" aria-label="menu">☰</button>
+  </div>
+</header>
 
-  <main>
-    <!-- HERO (plein écran si tu veux) -->
-    <section class="hero hero-dark">
-      <div class="container hero-inner">
-        <div>
-          <h1>Samarcande Corridor</h1>
-          <p class="slogan">Relier les territoires. Réinventer la logistique. Préparer la transition énergétique.</p>
-          <p class="pitch">Une nouvelle génération d’infrastructures, conçue pour connecter la Méditerranée, le Rhône et la Saône autour d’une même ambition : décarboner le mouvement et redonner sens à l’industrie.</p>
-          <a href="#vision" class="primary-cta">Découvrir le projet</a>
-        </div>
+<main>
 
-        <div class="corridor-visual">
-          <div class="corridor-map" aria-hidden="true">
-            <img src="assets/hero.jpg" alt="Vue du pôle Samarcande au bord du lac" style="width:100%;height:100%;object-fit:cover;border-radius:8px;filter:brightness(0.45) contrast(1.1)" />
-          </div>
+  <!-- HERO -->
+  <section id="hero" class="hero hero-dark">
+    <!-- background video -->
+    <video id="hero-video" autoplay muted loop playsinline src="assets/video port.mp4" preload="auto"></video>
+
+    <!-- animated ink overlay (subtle) -->
+    <svg class="ink" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="gInk" x1="0" x2="1">
+          <stop offset="0%" stop-color="#002f4b" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#00121a" stop-opacity="0.65"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 400 C150 300, 350 450, 800 280 L800 600 L0 600 Z" fill="url(#gInk)">
+        <animate attributeName="d" dur="14s" repeatCount="indefinite"
+          values="M0 420 C150 320, 350 470, 800 300 L800 600 L0 600 Z;
+                  M0 380 C150 280, 350 430, 800 260 L800 600 L0 600 Z;
+                  M0 400 C150 300, 350 450, 800 280 L800 600 L0 600 Z"/>
+      </path>
+    </svg>
+
+    <div class="container hero-inner">
+      <div class="hero-content" data-animate>
+        <h1>Samarcande Corridor</h1>
+        <p class="lead">Relier les territoires. Réinventer la logistique. Préparer la transition énergétique.</p>
+        <p class="sub">Une nouvelle génération d’infrastructures pour connecter la Méditerranée, le Rhône et la Saône.</p>
+        <div class="hero-ctas">
+          <a href="#vision" class="btn primary">Découvrir le projet</a>
+          <a href="#actors" class="btn ghost">Nos partenaires</a>
         </div>
       </div>
-    </section>
 
-    <!-- STORYBOARD SECTIONS -->
-    <section id="vision" class="container">
+      <!-- corridor SVG line (Marseille -> Lyon -> Paris) -->
+      <div class="corridor-rail" aria-hidden="true">
+        <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0%" stop-color="#D6C5A2"/>
+              <stop offset="100%" stop-color="#002f4b"/>
+            </linearGradient>
+          </defs>
+          <path class="rail-bg" d="M40 170 C150 120, 300 120, 560 40" stroke="#172b3a" stroke-width="6" fill="none" />
+          <path class="rail" d="M40 170 C150 120, 300 120, 560 40" stroke="url(#g)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 8"/>
+          <circle cx="40" cy="170" r="5" fill="#fff" stroke="#002f4b" stroke-width="2"/><text x="48" y="168">Marseille</text>
+          <circle cx="280" cy="120" r="5" fill="#fff" stroke="#002f4b" stroke-width="2"/><text x="290" y="118">Lyon</text>
+          <circle cx="560" cy="40" r="5" fill="#fff" stroke="#002f4b" stroke-width="2"/><text x="480" y="38">Paris</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section id="vision" class="section" data-animate>
+    <div class="container narrow">
       <h2>Une vision nationale</h2>
-      <p class="muted">Le Corridor Samarcande est un axe logistique, industriel et énergétique qui relie Marseille, Lyon et Paris. Conçu pour valoriser les ressources foncières, optimiser la mobilité et accélérer la décarbonation, il s’appuie sur une gouvernance publique et privée au service de l’efficacité et du territoire.</p>
-      <p class="muted"><em>Un maillage intelligent entre ports, zones industrielles et hubs multimodaux. Une dynamique durable, ancrée dans la Méditerranée et tournée vers l’Europe.</em></p>
-      <div style="margin-top:1rem" class="card"><img src="assets/img1.jpg" alt="Carte animée du corridor" style="width:100%;border-radius:8px" /></div>
-    </section>
-
-    <section id="architecture" class="container overview">
-      <h2>Architecture et design</h2>
-      <p class="muted">Les sites du Corridor sont pensés comme des lieux d'activité, d'innovation et de vie. Des architectures inspirées par l'eau et la lumière, conjuguant bois, verre et technologies bas carbone.</p>
-      <p class="muted"><em>Penser la beauté dans la fonctionnalité. Créer des espaces où le travail et la nature coexistent harmonieusement.</em></p>
-      <div class="cards" style="margin-top:1rem"><div class="card"><img src="assets/img2.jpg" alt="Bâtiment bois et verre" style="width:100%;border-radius:8px" /></div></div>
-    </section>
-
-    <section id="water-energy" class="container">
-      <h2>Eau, énergie, flux</h2>
-      <p class="muted">Le Corridor suit le Rhône, colonne vertébrale naturelle du territoire. Il connecte les bassins industriels, énergétiques et fluviaux à travers un réseau cohérent et résilient. L'eau, source d'énergie et de vie, inspire l'ensemble du projet.</p>
-      <p class="muted"><em>Une conception où la nature guide la structure. Chaque site est pensé comme un écosystème vivant.</em></p>
-    </section>
-
-    <section id="decarbonation" class="container overview">
-      <h2>Décarbonation et multimodalité</h2>
-      <p class="muted">Camions électriques, fret ferroviaire, logistique fluviale, bâtiments à énergie positive… Le Corridor Samarcande incarne un modèle de mobilité propre et intégrée.</p>
-      <p class="muted"><em>Une logistique au service du climat, de l'économie et des territoires.</em></p>
-    </section>
-
-    <section id="actors" class="container">
-      <h2>Les acteurs du Corridor</h2>
-      <p class="muted">Le Corridor n'est pas un projet isolé. C'est une alliance d'acteurs : institutions, entreprises, architectes, chercheurs et opérateurs. Ensemble, ils construisent une infrastructure partagée, utile et durable.</p>
-      <p class="muted"><em>CCI Lyon Métropole, Marseille Fos, CAPI, Samarcande Capital, 965 Énergie Solaire, et nombreux partenaires.</em></p>
-      <div class="cards" style="margin-top:1rem"><div class="card"><img src="assets/logo.svg" alt="Logos partenaires" style="width:100%;border-radius:8px" /></div></div>
-    </section>
-
-    <section id="spirit" class="container overview">
-      <h2>L'esprit Samarcande</h2>
-      <p class="muted">Samarcande Capital est un acteur stratégique du financement et du développement de projets logistiques et immobiliers durables. Avec le Corridor, nous posons les bases d'un modèle réplicable : une infrastructure au service de la transition écologique, énergétique et industrielle.</p>
-      <p class="muted"><em>Construire des ponts entre les territoires. Donner du sens au mouvement.</em></p>
-      <div style="margin-top:1rem"><a class="primary-cta" href="#contact">Découvrir Samarcande Capital</a> <a class="secondary-cta" href="#contact">Contactez notre équipe</a></div>
-    </section>
-
-    <section id="contact" class="container">
-      <h2>Contact / Accès Studio</h2>
-      <div class="contact">
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
-          <input type="hidden" name="form-name" value="contact" />
-          <p style="display:none"><label>Ne pas remplir<input name="bot-field" /></label></p>
-          <label>Nom<input type="text" name="name" required></label>
-          <label>Email<input type="email" name="email" required></label>
-          <label>Organisation<input type="text" name="org"></label>
-          <label>Message<textarea name="message" rows="4"></textarea></label>
-          <label>Je souhaite :
-            <select name="interest">
-              <option>Rejoindre le studio</option>
-              <option>Demander accès ressources</option>
-              <option>Proposer un partenariat</option>
-            </select>
-          </label>
-          <button type="submit">Envoyer</button>
-        </form>
-        <p class="muted">Contact responsable foncier : D. Giunta — <a href="mailto:dg@placeholder.com">dg@placeholder.com</a></p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="muted">&copy; 2025 Samarcande Capital — Tous droits réservés</div>
-      <div class="muted">contact@samarcandecapital.com</div>
-      <div class="muted">Partenaires : CCI · Solargreen · Holcim · AMU · Agglo Fos</div>
+      <p class="muted">Le Corridor Samarcande est un axe logistique, industriel et énergétique qui relie Marseille, Lyon et Paris. Conçu pour valoriser les ressources foncières, optimiser la mobilité et accélérer la décarbonation.</p>
+      <figure class="media">
+        <img src="assets/main site.png" alt="Carte Corridor Samarcande" />
+        <figcaption>Carte : flux Marseille → Lyon → Paris.</figcaption>
+      </figure>
     </div>
-  </footer>
+  </section>
+
+  <!-- Architecture -->
+  <section id="architecture" class="section bg-light" data-animate>
+    <div class="container narrow">
+      <h2>Architecture et design</h2>
+      <p class="muted">Des architectures inspirées par l’eau et la lumière, conjuguant bois, verre et matériaux bas carbone.</p>
+      <div class="grid-2">
+        <img src="assets/photo 2 - saca.png" alt="Bâtiment Samarcande" />
+        <img src="assets/photo 3 saca.png" alt="Maquette et rendu" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Water & Energy -->
+  <section id="energy" class="section" data-animate>
+    <div class="container narrow">
+      <h2>Eau, énergie, flux</h2>
+      <p class="muted">L’eau comme fil conducteur, l’énergie comme moteur — intégration ENR, report modal et hubs autonomes.</p>
+      <div class="gallery">
+        <img src="assets/sunset boat.JPG" alt="Coucher de soleil sur le port" />
+        <img src="assets/boat.jpg" alt="Flux logistique fluvial" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Decarbonation -->
+  <section id="decarbonation" class="section bg-light" data-animate>
+    <div class="container narrow">
+      <h2>Décarbonation et multimodalité</h2>
+      <p class="muted">Camions électriques, fret ferroviaire, logistique fluviale : un modèle intégré pour réduire l'empreinte carbone.</p>
+      <figure class="media">
+        <img src="assets/Truck.JPG" alt="Camion électrique" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- Actors -->
+  <section id="actors" class="section" data-animate>
+    <div class="container narrow">
+      <h2>Les acteurs du Corridor</h2>
+      <p class="muted">CCI, Marseille Fos, CAPI, Samarcande Capital, 965 Énergie…</p>
+      <div class="partners">
+        <img src="assets/logo.jpg" alt="Partenaire placeholder" />
+        <!-- you can add partner logos here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <section id="contact" class="section bg-light" data-animate>
+    <div class="container narrow">
+      <h2>Contact</h2>
+      <p class="muted">Pour accéder aux ressources et fiches : <a href="mailto:contact@samarcandecapital.com">contact@samarcandecapital.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-left">© 2025 Samarcande Capital — Tous droits réservés</div>
+    <div class="foot-right">Liens partenaires · <a href="#">LinkedIn</a></div>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
