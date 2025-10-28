@@ -85,7 +85,9 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: var(--blanc);
+  transform: translate(var(--mx, 0), var(--my, 0));
+  transition: transform 0.1s ease-out;
+   
 }
 .hero video {
   position: absolute;
