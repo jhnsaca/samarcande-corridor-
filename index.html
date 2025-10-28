@@ -34,10 +34,30 @@
 
 <main>
 
-  <!-- HERO -->
-  <section id="hero" class="hero hero-dark">
-    <!-- background video -->
-    <video id="hero-video" autoplay muted loop playsinline src="assets/video-port.mp4" preload="auto"></video>
+<!-- HERO SECTION -->
+<section id="hero" class="hero">
+  <video id="hero-video" autoplay muted loop playsinline>
+    <source src="assets/video port.mp4" type="video/mp4">
+  </video>
+  <div class="ink"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content" data-animate>
+      <h1>Samarcande Corridor</h1>
+      <p class="lead">Un projet immersif sur les routes et échanges eurasiens.</p>
+      <p class="sub">Un voyage entre innovation, transport et culture, au cœur des corridors modernes reliant l’Europe à l’Asie.</p>
+      <div class="hero-ctas">
+        <a href="#vision" class="btn primary">Découvrir</a>
+        <a href="#contact" class="btn ghost">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Le rail animé -->
+  <svg class="corridor-rail" viewBox="0 0 600 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="rail" d="M0 60 C150 20, 300 100, 600 60" stroke="#D6C5A2" stroke-width="2" />
+  </svg>
+</section>
 
     <!-- animated ink overlay (subtle) -->
     <svg class="ink" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
