@@ -56,3 +56,18 @@ document.querySelectorAll('.citation').forEach(el => {
     el.style.opacity = 1;
   }, 800);
 });
+// --- Apparition animée de la citation du hero ---
+document.addEventListener('DOMContentLoaded', () => {
+  const citation = document.querySelector('.citation');
+  if (citation) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          citation.classList.add('is-visible');
+          observer.unobserve(citation);
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(citation);
+  }
+});
