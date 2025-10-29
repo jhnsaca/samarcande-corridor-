@@ -248,3 +248,20 @@ body {
 strong {
   color: var(--bleu);
 }
+/* --- Animation cinématique sur la citation du hero --- */
+.citation {
+  display: inline-block;
+  font-style: italic;
+  color: var(--or);
+  font-weight: 500;
+  margin-top: 0.8rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1.8s var(--ease), transform 1.8s var(--ease);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.citation.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
