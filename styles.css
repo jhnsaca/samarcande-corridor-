@@ -233,3 +233,18 @@ body {
   .grid-2 { grid-template-columns: 1fr; }
   .gallery img { width: 100%; }
 }
+.citation {
+  font-style: italic;
+  color: var(--or);
+  font-weight: 500;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+}
+
+.hero-content .lead {
+  max-width: 60ch;
+}
+
+strong {
+  color: var(--bleu);
+}
