@@ -48,3 +48,11 @@ document.addEventListener('DOMContentLoaded', function(){
     vid.parentNode.replaceChild(img, vid);
   });
 });
+// Mise en valeur douce des citations à l’apparition
+document.querySelectorAll('.citation').forEach(el => {
+  el.style.opacity = 0;
+  el.style.transition = 'opacity 1.4s ease-out';
+  setTimeout(() => {
+    el.style.opacity = 1;
+  }, 800);
+});
