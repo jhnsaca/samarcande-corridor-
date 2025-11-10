@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const vid = document.getElementById('hero-video');
   vid && vid.addEventListener('error', ()=>{
     const img = document.createElement('img');
-    img.src = 'assets/main site.png';
+    img.src = 'assets/main-site.png';
     img.alt = 'Hero fallback';
     img.style.width='100%';
     img.style.height='100%';
