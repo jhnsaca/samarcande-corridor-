@@ -71,4 +71,46 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(citation);
   }
 });
+/* === Simple medley carousel (auto + dots) === */
+(function(){
+  function initMedley(id, delay=3600){
+    const wrap = document.getElementById(id);
+    if(!wrap) return;
+    const slides = wrap.querySelectorAll('.medley-slide');
+    if(slides.length === 0) return;
+    let idx = 0;
+    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
+
+    // create nav
+    const nav = document.createElement('div');
+    nav.className = 'medley-nav';
+    slides.forEach((s,i)=>{
+      const dot = document.createElement('div');
+      dot.className = 'medley-dot' + (i===0 ? ' active' : '');
+      dot.addEventListener('click', ()=> {
+        slides[idx].classList.remove('active');
+        nav.children[idx].classList.remove('active');
+        idx = i;
+        slides[idx].classList.add('active');
+        nav.children[idx].classList.add('active');
+      });
+      nav.appendChild(dot);
+    });
+    wrap.parentNode.insertBefore(nav, wrap.nextSibling);
+
+    // autoplay
+    setInterval(()=> {
+      slides[idx].classList.remove('active');
+      nav.children[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+      nav.children[idx].classList.add('active');
+    }, delay);
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    initMedley('medley-decarbon', 4200);
+    // if you add another medley, initMedley('medley-energy', 4000);
+  });
+})();
 
