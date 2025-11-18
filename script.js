@@ -1,3 +1,5 @@
+
+document.body.classList.remove('no-js');
 // script.js — scroll reveal, rail draw animation, small parallax
 document.addEventListener('DOMContentLoaded', function(){
   // Intersection reveal
