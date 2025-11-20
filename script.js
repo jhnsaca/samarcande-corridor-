@@ -1,123 +1,70 @@
-
-// script.js — scroll reveal, rail draw animation, small parallax
-document.addEventListener('DOMContentLoaded', function(){
-  document.body.classList.remove('no-js');
-
-  const heroContent = document.querySelector('.hero-content[data-animate]');
-  if (heroContent) {
-    heroContent.classList.add('is-visible');
-  }
-
-  // Intersection reveal for other animated elements
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e => {
-      // Only add 'is-visible' if it's not the hero-content (already handled)
-      if(e.isIntersecting && e.target !== heroContent) {
-        e.target.classList.add('is-visible');
-      }
-    });
-  }, {threshold: 0.18});
-  document.querySelectorAll('[data-animate]').forEach(el => {
-    // Exclude hero-content from being observed by this general observer
-    if (el !== heroContent) {
-      observer.observe(el);
-    }
-  });
-
-  // Animate the corridor rail (stroke dash offset)
-  const rail = document.querySelector('.rail');
-  if(rail){
-    const pathLen = rail.getTotalLength ? rail.getTotalLength() : null;
-    if(pathLen){
-      rail.style.strokeDasharray = pathLen;
-      rail.style.strokeDashoffset = pathLen;
-      // Draw when hero loads
-      setTimeout(()=> {
-        rail.style.transition = 'stroke-dashoffset 3.2s ease-out';
-        rail.style.strokeDashoffset = '0';
-      }, 600);
-    }
-  }
-
-  // simple parallax on hero mousemove (subtle)
-  const hero = document.getElementById('hero');
-  if(hero){
-    hero.addEventListener('mousemove', (e)=>{
-      const rect = hero.getBoundingClientRect();
-      const cx = (e.clientX - rect.left) / rect.width - 0.5;
-      const cy = (e.clientY - rect.top) / rect.height - 0.5;
-      hero.style.setProperty('--mx', (cx*6).toFixed(2) + 'px');
-      hero.style.setProperty('--my', (cy*6).toFixed(2) + 'px');
-    });
-  }
-
-  // lazy video fallback: if video fails to load, replace with hero image
-  const vid = document.getElementById('hero-video');
-  vid && vid.addEventListener('error', ()=>{
-    const img = document.createElement('img');
-    img.src = 'assets/main-site.png';
-    img.alt = 'Hero fallback';
-    img.style.width='100%';
-    img.style.height='100%';
-    img.style.objectFit='cover';
-    img.style.filter='brightness(0.45) contrast(1.1)';
-    vid.parentNode.replaceChild(img, vid);
-  });
-});
-// --- Apparition animée de la citation du hero ---
 document.addEventListener('DOMContentLoaded', () => {
-  const citation = document.querySelector('.citation');
-  if (citation) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          citation.classList.add('is-visible');
-          observer.unobserve(citation);
-        }
-      });
-    }, { threshold: 0.5 });
-    observer.observe(citation);
-  }
-});
-/* === Simple medley carousel (auto + dots) === */
-(function(){
-  function initMedley(id, delay=3600){
-    const wrap = document.getElementById(id);
-    if(!wrap) return;
-    const slides = wrap.querySelectorAll('.medley-slide');
-    if(slides.length === 0) return;
-    let idx = 0;
-    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
+    
+    // 1. SCROLL REVEAL ANIMATION
+    // Utilisation de l'API Intersection Observer pour la performance
+    const revealElements = document.querySelectorAll('.reveal');
 
-    // create nav
-    const nav = document.createElement('div');
-    nav.className = 'medley-nav';
-    slides.forEach((s,i)=>{
-      const dot = document.createElement('div');
-      dot.className = 'medley-dot' + (i===0 ? ' active' : '');
-      dot.addEventListener('click', ()=> {
-        slides[idx].classList.remove('active');
-        nav.children[idx].classList.remove('active');
-        idx = i;
-        slides[idx].classList.add('active');
-        nav.children[idx].classList.add('active');
-      });
-      nav.appendChild(dot);
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Jouer l'animation une seule fois
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.15, // Déclenche quand 15% de l'élément est visible
+        rootMargin: "0px 0px -50px 0px"
     });
-    wrap.parentNode.insertBefore(nav, wrap.nextSibling);
 
-    // autoplay
-    setInterval(()=> {
-      slides[idx].classList.remove('active');
-      nav.children[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-      nav.children[idx].classList.add('active');
-    }, delay);
-  }
+    revealElements.forEach(el => revealObserver.observe(el));
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    initMedley('medley-decarbon', 4200);
-    // if you add another medley, initMedley('medley-energy', 4000);
-  });
-})();
+    // 2. NAVBAR STICKY EFFECT
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(0, 18, 26, 0.95)';
+            navbar.style.padding = '15px 0';
+        } else {
+            navbar.style.background = 'rgba(0, 18, 26, 0.8)';
+            navbar.style.padding = '20px 0';
+        }
+    });
+
+    // 3. CAROUSEL AUTOMATIQUE (Section 6)
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    const slideInterval = 4000; // 4 secondes
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, slideInterval);
+
+    // 4. SMOOTH SCROLL POUR LES ANCRES
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            if (navLinks.classList.contains('nav-active')) {
+                navLinks.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+            }
+        });
+    });
+
+    // 5. BURGER MENU TOGGLE
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        burger.classList.toggle('toggle');
+    });
+});
