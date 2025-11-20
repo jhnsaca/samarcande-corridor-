@@ -250,10 +250,12 @@ main section {
    ANIMATIONS
 ========================================== */
 [data-animate] {
-  opacity: 0;
-  transform: translateY(24px);
+  /* Temporary: Force visibility for debugging */
+  opacity: 1 !important;
+  transform: none !important;
   transition: opacity 1s var(--ease), transform 1s var(--ease);
 }
+/* Original rule, will be effectively overridden by !important above for testing */
 [data-animate].is-visible {
   opacity: 1;
   transform: none;

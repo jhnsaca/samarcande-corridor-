@@ -1,14 +1,28 @@
 
-document.body.classList.remove('no-js');
 // script.js — scroll reveal, rail draw animation, small parallax
 document.addEventListener('DOMContentLoaded', function(){
-  // Intersection reveal
+  document.body.classList.remove('no-js');
+
+  const heroContent = document.querySelector('.hero-content[data-animate]');
+  if (heroContent) {
+    heroContent.classList.add('is-visible');
+  }
+
+  // Intersection reveal for other animated elements
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(e => {
-      if(e.isIntersecting) e.target.classList.add('is-visible');
+      // Only add 'is-visible' if it's not the hero-content (already handled)
+      if(e.isIntersecting && e.target !== heroContent) {
+        e.target.classList.add('is-visible');
+      }
     });
   }, {threshold: 0.18});
-  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-animate]').forEach(el => {
+    // Exclude hero-content from being observed by this general observer
+    if (el !== heroContent) {
+      observer.observe(el);
+    }
+  });
 
   // Animate the corridor rail (stroke dash offset)
   const rail = document.querySelector('.rail');
@@ -49,14 +63,6 @@ document.addEventListener('DOMContentLoaded', function(){
     img.style.filter='brightness(0.45) contrast(1.1)';
     vid.parentNode.replaceChild(img, vid);
   });
-});
-// Mise en valeur douce des citations à l’apparition
-document.querySelectorAll('.citation').forEach(el => {
-  el.style.opacity = 0;
-  el.style.transition = 'opacity 1.4s ease-out';
-  setTimeout(() => {
-    el.style.opacity = 1;
-  }, 800);
 });
 // --- Apparition animée de la citation du hero ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -115,4 +121,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // if you add another medley, initMedley('medley-energy', 4000);
   });
 })();
-
