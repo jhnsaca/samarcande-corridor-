@@ -277,3 +277,18 @@ main section {
   .section-alt { flex-direction: column; }
   .section-alt .text, .section-alt .image { flex: 1 1 100%; }
 }
+/* FIX — sections invisibles */
+main section {
+  position: relative;
+  z-index: 10;
+}
+
+/* HERO ne doit plus être au-dessus du monde */
+.hero {
+  z-index: 0;
+}
+
+/* Evite que le header cache tout */
+main {
+  margin-top: 80px;
+}
