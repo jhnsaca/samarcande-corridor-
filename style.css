@@ -158,11 +158,10 @@ ul { list-style: none; }
 /* --- HORIZONTAL SCROLL --- */
 .horizontal-section {
     width: 100%;
-    height: 100vh; /* Sera épinglé par GSAP */
+    height: auto; /* Changé pour s'adapter au contenu */
     overflow: hidden;
     background: var(--blue-deep);
-    display: flex;
-    align-items: center;
+    padding: 100px 50px; /* Ajout de padding */
 }
 
 .horizontal-wrapper {

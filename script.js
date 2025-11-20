@@ -107,13 +107,13 @@ const text = new SplitType('#manifesto-text', { types: 'words, chars' });
 gsap.from(text.chars, {
     scrollTrigger: {
         trigger: '.manifesto',
-        start: 'top 80%',
-        end: 'bottom 20%',
+        start: 'top 95%', // Démarre l'animation plus tôt
+        end: 'bottom center',
         scrub: true,
+        toggleActions: 'play reverse play reverse', // Ajout du toggle
     },
     opacity: 0.1,
     stagger: 0.1,
-    color: '#333'
 });
 
 // 6. HORIZONTAL SCROLL
