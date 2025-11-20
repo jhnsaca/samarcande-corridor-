@@ -180,6 +180,11 @@ body {
 
 .muted { color: var(--muted); }
 
+main section {
+  position: relative;
+  z-index: 10;
+}
+
 /* ==========================================
    LAYOUT ALTERNÉ (corrigé)
 ========================================== */
