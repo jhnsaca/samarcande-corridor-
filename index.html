@@ -3,231 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samarcande Corridor | Vision Territoriale & Industrielle</title>
-    <meta name="description" content="Relier les territoires. Valoriser Marseille Méditerranée. Accélérer la transition énergétique.">
+    <title>SAMARCANDE CORRIDOR | L'Avenir Industriel</title>
     
-    <!-- Fonts: Inter pour le côté corporate/clean -->
+    <!-- Fonts Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Loader Cinématique -->
+    <div class="loader">
+        <div class="loader-text">SAMARCANDE</div>
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+        <div class="loader-counter">0%</div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">SAMARCANDE</div>
-            <ul class="nav-links">
-                <li><a href="#vision">Vision</a></li>
-                <li><a href="#expertises">Expertises</a></li>
-                <li><a href="#sites">Sites</a></li>
-                <li><a href="#contact" class="btn-nav">Contact</a></li>
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
+        <div class="logo">SAMARCANDE<span class="dot">.</span></div>
+        <div class="menu-btn">
+            <span>MENU</span>
+            <div class="lines">
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
         </div>
     </nav>
 
-    <!-- SECTION 1: HERO -->
-    <header class="hero">
-        <div class="video-overlay"></div>
-        <!-- Remplacer par assets/video-port.mp4 -->
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="assets/video-port.mp4" type="video/mp4">
-        </video>
-
-        <div class="hero-content">
-            <h1 class="reveal-text">SAMARCANDE <br> <span class="highlight">CORRIDOR</span></h1>
-            <div class="rail-animation">
-                <div class="rail-line"></div>
-                <div class="rail-dot"></div>
+    <!-- Wrapper pour Smooth Scroll (Lenis) -->
+    <main id="smooth-wrapper">
+        
+        <!-- HERO SECTION -->
+        <header class="hero" data-scroll-section>
+            <div class="video-container">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="assets/video-port.mp4" type="video/mp4">
+                </video>
+                <div class="overlay"></div>
             </div>
-            <h2 class="reveal-text delay-1">Relier les territoires. Valoriser Marseille Méditerranée.<br>Accélérer la transition énergétique.</h2>
             
-            <blockquote class="reveal-text delay-2">
-                "Une ambition tournée vers l’Europe, ouverte à l’international."
-            </blockquote>
-
-            <div class="hero-cta reveal-text delay-3">
-                <a href="#vision" class="btn-primary">Découvrir le projet</a>
-                <a href="#partenaires" class="btn-secondary">Partenaires</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- SECTION 2: LE CORRIDOR (Vision) -->
-    <section id="vision" class="section-split">
-        <div class="container">
-            <div class="split-content text-block reveal">
-                <span class="subtitle">Vision Globale</span>
-                <h3>Le Corridor Logistique & Énergétique</h3>
-                <p>Relier la Méditerranée au cœur industriel français. Samarcande Corridor incarne une vision nationale et européenne de l'optimisation des flux.</p>
-                <p>Grâce à une gouvernance publique-privée innovante, nous transformons le foncier en plateformes reproductibles, axées sur la décarbonation et la performance.</p>
-                <div class="stat-line">
-                    <span>Marseille</span> <span class="arrow">→</span> <span>Lyon</span> <span class="arrow">→</span> <span>Paris</span>
+            <div class="hero-content">
+                <div class="hero-label overflow-hide">
+                    <span class="anim-text">INFRASTRUCTURE & ÉNERGIE</span>
+                </div>
+                <h1 class="hero-title">
+                    <div class="line-wrap"><span class="anim-title">LE CORRIDOR</span></div>
+                    <div class="line-wrap"><span class="anim-title">DE L'EUROPE</span></div>
+                </h1>
+                <div class="hero-footer">
+                    <div class="scroll-indicator">
+                        <span>SCROLL</span>
+                        <div class="scroll-line"></div>
+                    </div>
+                    <p class="hero-desc anim-text">Relier Marseille à Paris. <br>Décarboner l'industrie.</p>
                 </div>
             </div>
-            <div class="split-image reveal">
-                <img src="assets/main-site.png" alt="Carte Corridor">
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- SECTION 3: QUI SOMMES-NOUS -->
-    <section id="expertises" class="section-split reverse">
-        <div class="container">
-            <div class="split-image reveal">
-                <img src="assets/photo-2-saca.png" alt="Architecture et Ingénierie">
+        <!-- SECTION 2: MANIFESTE (Text Reveal) -->
+        <section class="manifesto" data-scroll-section>
+            <div class="container">
+                <p class="big-text" id="manifesto-text">
+                    Nous ne construisons pas seulement des entrepôts. Nous traçons <span class="highlight">l'artère vitale</span> d'une Europe souveraine. De la Méditerranée aux capitales du Nord, Samarcande transforme le foncier en <span class="highlight">puissance énergétique</span>.
+                </p>
             </div>
-            <div class="split-content text-block reveal">
-                <span class="subtitle">Expertise</span>
-                <h3>Interface entre investissement, ingénierie et exploitation</h3>
-                <p>Samarcande Capital pilote la transformation territoriale à travers trois pôles d'excellence :</p>
-                <ul class="poles-list">
-                    <li><strong>Iceberg</strong> — Design & Stratégie (Intelligence collective)</li>
-                    <li><strong>Samarcande Studio</strong> — Hub & Opération</li>
-                    <li><strong>965</strong> — Foncier & ENR (PV, Stockage, O&M)</li>
-                </ul>
-                <p class="quote-small">"Au service de l’intelligence collective et du dialogue territorial."</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SECTION 4: OPERATEUR & ASSET MANAGER -->
-    <section class="section-full bg-dark reveal">
-        <div class="container center-text">
-            <span class="subtitle gold">Opérateur & Asset Manager</span>
-            <h3>Transformer le foncier sous-exploité en plateformes productives</h3>
-            <p class="lead">Nous créons des résultats mesurables de résilience et de productivité territoriale. Une vision nationale de la commercialité et de la circularité.</p>
-        </div>
-    </section>
-
-    <!-- SECTION 5: SITES ICONIQUES -->
-    <section id="sites" class="section-grid">
-        <div class="container">
-            <div class="section-header reveal">
-                <h3>Sites Iconiques</h3>
-                <p>Chaque site possède une identité propre, documentée par maquette numérique et plan d'exécution.</p>
-            </div>
-            <div class="grid-layout">
-                <div class="grid-item reveal">
-                    <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=800&auto=format&fit=crop" alt="Site Industriel">
-                    <div class="grid-info">
-                        <h4>Plateforme Alpha</h4>
-                        <p>Logistique multimodale</p>
+        <!-- SECTION 3: HORIZONTAL SCROLL (Le Corridor) -->
+        <section class="horizontal-section" id="horizontal-scroll">
+            <div class="horizontal-wrapper">
+                
+                <!-- Panel 1 -->
+                <div class="panel">
+                    <div class="panel-content">
+                        <span class="panel-number">01</span>
+                        <h2>Marseille<br>Méditerranée</h2>
+                        <p>La porte d'entrée des flux mondiaux.</p>
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1548603908-656997722545?q=80&w=1000" alt="Port"></div>
                     </div>
                 </div>
-                <div class="grid-item reveal delay-1">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Bureaux">
-                    <div class="grid-info">
-                        <h4>Hub Tertiaire</h4>
-                        <p>Siège & Innovation</p>
+
+                <!-- Panel 2 -->
+                <div class="panel">
+                    <div class="panel-content">
+                        <span class="panel-number">02</span>
+                        <h2>Vallée<br>du Rhône</h2>
+                        <p>L'axe vertébral de la logistique décarbonée.</p>
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1000" alt="Train"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SECTION 6: DÉCARBONATION (Carrousel) -->
-    <section class="section-carousel bg-grey">
-        <div class="container">
-            <div class="carousel-text reveal">
-                <span class="subtitle">Décarbonation & Multimodalité</span>
-                <h3>L'avenir des flux</h3>
-                <p>Camion électrique, fluvial, ferroviaire et réseaux d'énergies locales.</p>
+                <!-- Panel 3 -->
+                <div class="panel">
+                    <div class="panel-content">
+                        <span class="panel-number">03</span>
+                        <h2>Paris<br>& Europe</h2>
+                        <p>Le cœur de consommation connecté.</p>
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1000" alt="Paris"></div>
+                    </div>
+                </div>
+
             </div>
-            <div class="carousel-wrapper reveal">
-                <div class="carousel-track">
-                    <div class="slide active" style="background-image: url('assets/train.jpg');">
-                        <div class="slide-caption">Transport Ferroviaire</div>
+        </section>
+
+        <!-- SECTION 4: EXPERTISE (Parallax & Hover) -->
+        <section class="expertise" data-scroll-section>
+            <div class="container">
+                <div class="section-header">
+                    <span class="label">NOS PÔLES</span>
+                    <h3>INGÉNIERIE TOTALE</h3>
+                </div>
+                
+                <div class="expertise-list">
+                    <div class="expertise-item">
+                        <div class="exp-info">
+                            <span class="num">01</span>
+                            <h4>Iceberg Strategy</h4>
+                        </div>
+                        <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800');"></div>
                     </div>
-                    <div class="slide" style="background-image: url('assets/boat.jpg');">
-                        <div class="slide-caption">Logistique Fluviale</div>
+                    <div class="expertise-item">
+                        <div class="exp-info">
+                            <span class="num">02</span>
+                            <h4>Samarcande Studio</h4>
+                        </div>
+                        <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800');"></div>
                     </div>
-                    <div class="slide" style="background-image: url('assets/truck.jpg');">
-                        <div class="slide-caption">Mobilité Électrique</div>
+                    <div class="expertise-item">
+                        <div class="exp-info">
+                            <span class="num">03</span>
+                            <h4>965 Energy</h4>
+                        </div>
+                        <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=800');"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SECTION 7: EAU & ÉNERGIE -->
-    <section class="section-medley reveal">
-        <div class="container">
-            <div class="medley-content">
-                <h3>Eau, Énergie, Flux</h3>
-                <p>"Une architecture dont le design s’inspire de la Méditerranée, de l’eau et de la lumière."</p>
-                <p>Exploitation de l'eau comme ressource territoriale et valorisation des flux énergétiques.</p>
+        <!-- SECTION 5: FOOTER IMMERSIF -->
+        <footer class="footer" data-scroll-section>
+            <div class="footer-bg">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1500" alt="Earth">
             </div>
-            <div class="medley-images">
-                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600" alt="Eau" class="m-img-1">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600" alt="Energie Solaire" class="m-img-2">
-                <img src="https://images.unsplash.com/photo-1487868352303-e2836a1e47e3?q=80&w=600" alt="Lumière" class="m-img-3">
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 8: ACTEURS -->
-    <section id="partenaires" class="section-partners">
-        <div class="container">
-            <div class="partners-block reveal">
-                <h4>Fondateurs</h4>
-                <div class="logos-grid">
-                    <div class="logo-item">SACA</div>
-                    <div class="logo-item">965</div>
+            <div class="container">
+                <h2 class="footer-cta">INITIER LE<br>MOUVEMENT</h2>
+                <div class="footer-bottom">
+                    <div class="contact-block">
+                        <p>contact@samarcande.com</p>
+                        <p>+33 1 00 00 00 00</p>
+                    </div>
+                    <div class="social-block">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
+                    </div>
                 </div>
             </div>
-            <div class="partners-block reveal">
-                <h4>Partenaires Institutionnels</h4>
-                <div class="logos-grid">
-                    <div class="logo-item">CCI Lyon</div>
-                    <div class="logo-item">Port Marseille Fos</div>
-                    <div class="logo-item">CAPI</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- SECTION 9: CONTACT -->
-    <section id="contact" class="section-contact bg-dark">
-        <div class="container">
-            <div class="contact-wrapper reveal">
-                <div class="contact-info">
-                    <h3>Contact Institutionnel</h3>
-                    <p>Pour toute demande d'investissement ou de partenariat.</p>
-                    <address>
-                        Samarcande Corridor<br>
-                        Marseille — Lyon — Paris<br>
-                        contact@samarcande-corridor.com
-                    </address>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Nom & Société" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email Professionnel" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Objet de la demande" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary full-width">Envoyer</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Samarcande Capital. Tous droits réservés. Mentions Légales.</p>
-        </div>
-    </footer>
-
+    <!-- SCRIPTS (GSAP + Lenis) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
