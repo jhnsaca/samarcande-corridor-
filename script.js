@@ -26,119 +26,83 @@ const cursorOutline = document.querySelector('.cursor-outline');
 window.addEventListener('mousemove', (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
-
-    // Dot suit instantanément
     cursorDot.style.left = `${posX}px`;
     cursorDot.style.top = `${posY}px`;
-
-    // Outline suit avec un délai (effet magnétique)
-    cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
+    cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
-// Effet hover sur les liens
-document.querySelectorAll('a, .menu-btn, .expertise-item').forEach(el => {
+// Hover effects
+document.querySelectorAll('a, .menu-btn, .founder-card, .partner-logo').forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursorOutline.style.backgroundColor = 'rgba(255,255,255,0.1)';
+        cursorOutline.style.backgroundColor = 'rgba(196, 176, 133, 0.1)';
+        cursorOutline.style.borderColor = 'transparent';
     });
     el.addEventListener('mouseleave', () => {
         cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
         cursorOutline.style.backgroundColor = 'transparent';
+        cursorOutline.style.borderColor = 'rgba(255,255,255,0.3)';
     });
 });
 
 // 3. LOADER CINÉMATIQUE
 const tlLoader = gsap.timeline();
-
 tlLoader
-    .to('.loader-progress', {
-        width: '100%',
-        duration: 2,
-        ease: 'power2.inOut',
-        onUpdate: function() {
-            // Compteur de 0 à 100
-            const progress = Math.round(this.progress() * 100);
-            document.querySelector('.loader-counter').textContent = progress + '%';
-        }
-    })
-    .to('.loader', {
-        y: '-100%',
-        duration: 1,
-        ease: 'power4.inOut',
-        delay: 0.2
-    })
-    .from('.hero-video', {
-        scale: 1.5,
-        duration: 1.5,
-        ease: 'power2.out'
-    }, "-=0.8")
-    .to('.anim-title', {
-        y: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out'
-    }, "-=0.5")
-    .to('.anim-text', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
-    }, "-=0.8");
+    .to('.loader-progress', { width: '100%', duration: 1.5, ease: 'power2.inOut' })
+    .to('.loader', { y: '-100%', duration: 1, ease: 'power4.inOut', delay: 0.2 })
+    .from('.hero-video', { scale: 1.3, duration: 1.5, ease: 'power2.out' }, "-=0.8")
+    .to('.anim-title', { y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }, "-=0.5")
+    .to('.anim-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
 
-
-// 4. ANIMATION HERO PARALLAX
-gsap.to('.hero-video', {
-    scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-    },
-    y: '30%' // La vidéo descend moins vite que le scroll
-});
-
-// 5. TEXT REVEAL (MANIFESTO)
-// On sépare le texte en mots/caractères
+// 4. TEXT REVEAL (MANIFESTO)
 const text = new SplitType('#manifesto-text', { types: 'words, chars' });
-
 gsap.from(text.chars, {
     scrollTrigger: {
         trigger: '.manifesto',
-        start: 'top 95%', // Démarre l'animation plus tôt
-        end: 'bottom center',
+        start: 'top 80%',
+        end: 'bottom 20%',
         scrub: true,
-        toggleActions: 'play reverse play reverse', // Ajout du toggle
     },
     opacity: 0.1,
     stagger: 0.1,
+    color: '#001F2B'
 });
 
-// 6. HORIZONTAL SCROLL
+// 5. HORIZONTAL SCROLL
 let sections = gsap.utils.toArray(".panel");
-
 gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
         trigger: ".horizontal-section",
-        pin: true, // Épingle la section
-        scrub: 1, // Lie l'animation au scroll
+        pin: true,
+        scrub: 1,
         snap: 1 / (sections.length - 1),
         end: () => "+=" + document.querySelector(".horizontal-section").offsetWidth
     }
 });
 
-// 7. FOOTER REVEAL
-gsap.from('.footer-cta', {
+// 6. ARCHITECTURE PARALLAX
+gsap.to('.parallax-img img', {
+    y: '-20%',
     scrollTrigger: {
-        trigger: '.footer',
-        start: 'top 70%',
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out'
+        trigger: '.architecture',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+    }
+});
+
+// 7. GENERAL REVEAL UP
+gsap.utils.toArray('.reveal-up').forEach(elem => {
+    gsap.to(elem, {
+        scrollTrigger: {
+            trigger: elem,
+            start: 'top 85%',
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
 });
