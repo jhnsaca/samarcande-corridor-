@@ -32,7 +32,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // Hover effects
-document.querySelectorAll('a, .menu-btn, .founder-card, .partner-logo').forEach(el => {
+document.querySelectorAll('a, .menu-btn, .founder-card, .partner-logo, .partner-card').forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
         cursorOutline.style.backgroundColor = 'rgba(196, 176, 133, 0.1)';
@@ -54,13 +54,13 @@ tlLoader
     .to('.anim-title', { y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }, "-=0.5")
     .to('.anim-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
 
-// 4. TEXT REVEAL (MANIFESTO)
+// 4. TEXT REVEAL (VOCATION) - CORRIGÉ (Plus rapide)
 const text = new SplitType('#manifesto-text', { types: 'words, chars' });
 gsap.from(text.chars, {
     scrollTrigger: {
         trigger: '.manifesto',
         start: 'top 80%',
-        end: 'bottom 20%',
+        end: 'bottom 60%', // Fin de l'animation plus tôt pour éviter le retard
         scrub: true,
     },
     opacity: 0.1,
@@ -104,5 +104,45 @@ gsap.utils.toArray('.reveal-up').forEach(elem => {
         y: 0,
         duration: 1,
         ease: 'power3.out'
+    });
+});
+
+// 8. MENU BURGER LOGIC
+const menuBtn = document.getElementById('toggle-btn');
+const navOverlay = document.querySelector('.nav-overlay');
+const navLinks = document.querySelector('.nav-menu-links');
+const navItems = document.querySelectorAll('.nav-item');
+let isMenuOpen = false;
+
+menuBtn.addEventListener('click', () => {
+    if (!isMenuOpen) {
+        // Open Menu
+        gsap.to(navOverlay, { width: '100%', duration: 0.8, ease: 'power4.inOut' });
+        gsap.to(navLinks, { opacity: 1, duration: 0.5, delay: 0.5 });
+        gsap.from(navItems, { 
+            x: 50, 
+            opacity: 0, 
+            duration: 0.5, 
+            stagger: 0.1, 
+            delay: 0.4, 
+            ease: 'power2.out' 
+        });
+        document.querySelector('.menu-text').textContent = "FERMER";
+    } else {
+        // Close Menu
+        gsap.to(navOverlay, { width: '0%', duration: 0.8, ease: 'power4.inOut', delay: 0.2 });
+        gsap.to(navLinks, { opacity: 0, duration: 0.3 });
+        document.querySelector('.menu-text').textContent = "MENU";
+    }
+    isMenuOpen = !isMenuOpen;
+});
+
+// Fermer le menu quand on clique sur un lien
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        gsap.to(navOverlay, { width: '0%', duration: 0.8, ease: 'power4.inOut', delay: 0.2 });
+        gsap.to(navLinks, { opacity: 0, duration: 0.3 });
+        document.querySelector('.menu-text').textContent = "MENU";
+        isMenuOpen = false;
     });
 });
