@@ -145,3 +145,14 @@ navItems.forEach(item => {
         if(isMenuOpen) toggleMenu();
     });
 });
+// --- FORCER LA LECTURE VIDÉO ---
+window.addEventListener('load', () => {
+    const video = document.getElementById('heroVideo');
+    if (video) {
+        // On force le mute pour être sûr que le navigateur autorise l'autoplay
+        video.muted = true; 
+        video.play().catch(error => {
+            console.log("Lecture automatique bloquée : interaction requise.");
+        });
+    }
+});
