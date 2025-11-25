@@ -106,10 +106,13 @@ gsap.to(sections, {
     scrollTrigger: {
         trigger: ".horizontal-section",
         pin: true,
-        scrub: 1,
-        // On définit la durée du scroll basée sur la largeur de la fenêtre
-        end: () => "+=" + (document.querySelector(".horizontal-wrapper").offsetWidth - window.innerWidth),
-        invalidateOnRefresh: true
+        
+        // FLUIDITÉ :
+        scrub: 1.5, 
+        end: () => "+=" + window.innerWidth * 3, 
+        
+        invalidateOnRefresh: true,
+        anticipatePin: 1 
     }
 });
 
