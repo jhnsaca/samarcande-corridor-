@@ -47,12 +47,41 @@ document.querySelectorAll('a, .menu-btn, .founder-card, .partner-logo, .partner-
 
 // 3. LOADER CINÉMATIQUE
 const tlLoader = gsap.timeline();
+
 tlLoader
-    .to('.loader-progress', { width: '100%', duration: 1.5, ease: 'power2.inOut' })
-    .to('.loader', { y: '-100%', duration: 1, ease: 'power4.inOut', delay: 0.2 })
-    .from('.hero-video', { scale: 1.3, duration: 1.5, ease: 'power2.out' }, "-=0.8")
-    .to('.anim-title', { y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }, "-=0.5")
-    .to('.anim-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
+    .to('.loader-progress', {
+        width: '100%',
+        duration: 1.5,
+        ease: 'power2.inOut',
+        onUpdate: function() {
+            const progress = Math.round(this.progress() * 100);
+            const counter = document.querySelector('.loader-counter');
+            if(counter) counter.textContent = progress + '%';
+        }
+    })
+    .to('.loader', {
+        y: '-100%',
+        duration: 1,
+        ease: 'power4.inOut',
+        delay: 0.2
+    })
+    .from('.hero-video', {
+        scale: 1.3,
+        duration: 1.5,
+        ease: 'power2.out'
+    }, "-=0.8")
+    .to('.anim-title', {
+        y: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.out'
+    }, "-=0.5")
+    .to('.anim-text', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out'
+    }, "-=0.8");
 
 // 4. TEXT REVEAL (VOCATION)
 const text = new SplitType('#manifesto-text', { types: 'words, chars' });
