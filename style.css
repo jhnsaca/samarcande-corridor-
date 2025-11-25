@@ -164,7 +164,7 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     width: 100%; 
     height: 100vh; 
     overflow: hidden; 
-    background: var(--bg-gradient-secondary); 
+    background: #000; 
     position: relative;
 }
 
@@ -173,36 +173,60 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     width: 300%; /* 3 slides */
     height: 100%;
     flex-wrap: nowrap;
-    padding: 0; /* IMPORTANT : Pas de padding ici */
-    margin: 0;
 }
 
 .panel { 
-    width: 100vw; /* Largeur écran complet */
+    width: 100vw; /* PLEIN ÉCRAN */
     height: 100vh; 
     display: flex; 
     align-items: center; 
-    justify-content: flex-start; /* Aligne le contenu à gauche */
+    justify-content: flex-start; /* Texte à gauche */
     position: relative; 
-    flex-shrink: 0; /* CRUCIAL : Empêche le panneau de rétrécir */
-    padding: 0 10vw; /* Marge interne pour le texte */
+    flex-shrink: 0; 
+    padding: 0 10vw; 
     box-sizing: border-box;
 }
 
-/* LE TEXTE (Premier Plan) */
+/* --- L'IMAGE (ARRIÈRE-PLAN) --- */
+.img-box { 
+    position: absolute; 
+    top: 0; left: 0;
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; /* Tout au fond */
+}
+
+/* Masque sombre pour lire le texte */
+.img-box::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Dégradé du noir (gauche) vers transparent (droite) */
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 2;
+}
+
+.img-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* --- LE TEXTE (PREMIER PLAN) --- */
 .panel-content { 
     position: relative; 
-    z-index: 10; 
-    max-width: 600px; 
-    margin-top: 0;
+    z-index: 10; /* Devant l'image */
+    max-width: 650px; 
+    color: #fff;
 } 
 
 .panel-number { 
     font-family: var(--font-display); 
-    font-size: 12rem; 
-    color: rgba(255,255,255,0.03); 
+    font-size: 10rem; 
+    color: rgba(255,255,255,0.1); /* Subtil */
     position: absolute; 
-    top: -120px; 
+    top: -100px; 
     left: -50px; 
     z-index: -1; 
     line-height: 1;
@@ -213,57 +237,26 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     font-size: clamp(3rem, 6vw, 6rem); 
     text-transform: uppercase; 
     line-height: 1; 
-    margin-bottom: 30px; 
-    text-shadow: 0 10px 30px rgba(0,0,0,0.8); 
-    color: #fff;
+    margin-bottom: 25px; 
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
 
 .panel p { 
-    font-size: 1.2rem; 
-    color: var(--accent-color); 
-    max-width: 500px; 
-    text-shadow: 0 5px 20px rgba(0,0,0,0.9); 
-    background: rgba(0, 18, 26, 0.7); 
-    padding: 30px; 
-    backdrop-filter: blur(10px); 
-    border-left: 4px solid var(--accent-color);
+    font-size: 1.3rem; 
+    color: var(--accent-color); /* Or Mat */
+    max-width: 550px; 
     line-height: 1.6;
-}
-
-/* L'IMAGE (Arrière Plan) */
-.img-box { 
-    position: absolute; 
-    right: 0; 
-    top: 0; 
-    width: 100%; /* On prend TOUTE la largeur du panel */
-    height: 100%; 
-    overflow: hidden; 
-    z-index: 1; 
-}
-
-/* Masque dégradé pour que le texte soit lisible à gauche */
-.img-box::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
-    z-index: 2;
-}
-
-.img-box img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: transform 1s; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 20px;
 }
 
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
     .panel { padding: 0 20px; justify-content: center; text-align: center; }
-    .panel-content { width: 100%; }
-    .panel p { margin: 0 auto; border-left: none; border-top: 3px solid var(--accent-color); }
-    .img-box::after { background: rgba(0,0,0,0.6); } /* Fond plus sombre sur mobile */
+    .img-box::after { background: rgba(0,0,0,0.6); } /* Plus sombre sur mobile */
+    .panel p { border-left: none; padding-left: 0; font-size: 1.1rem; }
+    .panel-number { top: -60px; left: 50%; transform: translateX(-50%); font-size: 6rem; }
 }
 
 /* --- ARCHITECTURE --- */
