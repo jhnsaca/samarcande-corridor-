@@ -1,9 +1,9 @@
 /* --- VARIABLES & RESET --- */
 :root {
-    --bg-color: #00121A; /* Bleu Nuit très sombre */
-    --bg-secondary: #001F2B; /* Bleu Prusse */
+    --bg-color: #00121A;
+    --bg-secondary: #001F2B;
     --text-color: #EAEAEA;
-    --accent-color: #C4B085; /* Or Mat */
+    --accent-color: #C4B085;
     --border-color: rgba(196, 176, 133, 0.2);
     
     --font-display: 'Oswald', sans-serif;
@@ -54,7 +54,7 @@ ul { list-style: none; }
 .loader-bar { width: 200px; height: 2px; background: #222; position: relative; overflow: hidden; }
 .loader-progress { width: 0%; height: 100%; background: var(--accent-color); }
 
-/* --- NAVBAR & MENU OVERLAY --- */
+/* --- NAVBAR --- */
 .navbar {
     position: fixed;
     top: 0; width: 100%;
@@ -62,7 +62,7 @@ ul { list-style: none; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 200; /* Au dessus de tout */
+    z-index: 200;
     mix-blend-mode: difference;
 }
 .logo { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -70,46 +70,56 @@ ul { list-style: none; }
 .menu-btn { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; }
 .lines { display: flex; flex-direction: column; gap: 4px; }
 .line { width: 25px; height: 1px; background: #fff; transition: 0.3s; }
-
-/* Animation Burger */
 .menu-btn:hover .line:nth-child(1) { width: 35px; }
 .menu-btn:hover .line:nth-child(2) { width: 15px; }
 
-/* Overlay Menu */
-.nav-overlay {
+/* --- SIDEBAR MENU (NOUVEAU) --- */
+.nav-sidebar {
     position: fixed;
-    top: 0; right: 0;
-    width: 0%; /* Caché par défaut */
+    top: 0;
+    right: 0;
+    width: 450px; /* Largeur fixe */
     height: 100vh;
-    background: var(--bg-secondary);
+    background: #001824; /* Bleu très foncé */
     z-index: 150;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.nav-menu-links {
+    transform: translateX(100%); /* Caché à droite */
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    opacity: 0; /* Caché pour animation */
+    justify-content: space-between;
+    padding: 100px 50px 50px 50px;
+    border-left: 1px solid rgba(255,255,255,0.05);
 }
+
+.menu-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    z-index: 140;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.nav-header { font-size: 0.8rem; letter-spacing: 0.2em; color: #555; text-transform: uppercase; }
+
+.nav-menu-links { display: flex; flex-direction: column; gap: 25px; }
 
 .nav-item {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2rem;
     text-transform: uppercase;
-    color: #555;
+    color: #888;
     transition: 0.3s;
     display: flex;
     align-items: center;
     gap: 20px;
 }
+.nav-num { font-size: 0.9rem; color: var(--accent-color); letter-spacing: 0.1em; }
+.nav-item:hover { color: #fff; transform: translateX(10px); }
 
-.nav-num { font-size: 1rem; color: var(--accent-color); letter-spacing: 0.1em; }
-
-.nav-item:hover { color: #fff; transform: translateX(20px); }
+.nav-footer p { font-size: 0.8rem; color: #555; line-height: 1.5; }
 
 /* --- HERO SECTION --- */
 .hero {
@@ -136,7 +146,7 @@ ul { list-style: none; }
 .scroll-line { width: 1px; height: 40px; background: rgba(255,255,255,0.5); }
 .hero-desc { text-align: right; font-size: 1rem; line-height: 1.4; opacity: 0.8; }
 
-/* --- MANIFESTO (VOCATION) --- */
+/* --- MANIFESTO --- */
 .manifesto { padding: 150px 50px; background: var(--bg-color); }
 .section-label { display: block; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--accent-color); margin-bottom: 30px; text-transform: uppercase; }
 .big-text { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.3; max-width: 1200px; margin: 0 auto; color: #889; }
@@ -148,13 +158,10 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .horizontal-section { width: 100%; height: 100vh; overflow: hidden; background: var(--bg-secondary); display: flex; align-items: center; }
 .horizontal-wrapper { display: flex; gap: 100px; padding-left: 100px; width: 400%; }
 .panel { width: 80vw; height: 70vh; display: flex; align-items: center; position: relative; }
-
-/* Z-INDEX FIX: Content devant l'image */
 .panel-content { position: relative; z-index: 10; pointer-events: none; } 
 .panel-number { font-family: var(--font-display); font-size: 8rem; color: rgba(255,255,255,0.03); position: absolute; top: -80px; left: -20px; }
 .panel h2 { font-family: var(--font-display); font-size: 4rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 .panel p { font-size: 1.2rem; color: var(--accent-color); max-width: 350px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); background: rgba(0,0,0,0.2); padding: 10px; backdrop-filter: blur(5px); }
-
 .img-box { position: absolute; right: -200px; top: 0; width: 500px; height: 600px; overflow: hidden; z-index: 1; }
 .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
 
@@ -179,35 +186,16 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .partners-section { padding: 150px 50px; background: var(--bg-color); }
 .founders-block, .partners-block { margin-bottom: 60px; }
 h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px; text-transform: uppercase; }
-
 .founders-grid { display: flex; gap: 40px; }
 .founder-card { border: 1px solid var(--border-color); padding: 30px; width: 300px; transition: 0.3s; }
 .founder-card:hover { background: rgba(196, 176, 133, 0.05); border-color: var(--accent-color); }
 .f-name { display: block; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 5px; }
 .f-role { font-size: 0.8rem; color: var(--accent-color); }
-
 .divider { height: 1px; background: #222; margin: 60px 0; }
-
 .partners-grid { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; }
-.partner-logo { 
-    padding: 20px 40px; 
-    border: 1px solid #333; 
-    color: #888; 
-    font-weight: 600; 
-    letter-spacing: 0.1em;
-    transition: 0.3s;
-    height: 100%;
-    display: flex; align-items: center;
-}
+.partner-logo { padding: 20px 40px; border: 1px solid #333; color: #888; font-weight: 600; letter-spacing: 0.1em; transition: 0.3s; height: 100%; display: flex; align-items: center; }
 .partner-logo:hover { color: #fff; border-color: #fff; }
-
-/* Style spécifique CCI */
-.highlight-partner { 
-    border: 1px solid var(--accent-color); 
-    padding: 30px;
-    max-width: 400px;
-    background: rgba(196, 176, 133, 0.05);
-}
+.highlight-partner { border: 1px solid var(--accent-color); padding: 30px; max-width: 400px; background: rgba(196, 176, 133, 0.05); }
 .p-name { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--accent-color); margin-bottom: 10px; }
 .p-desc { font-size: 0.95rem; color: #ccc; line-height: 1.5; }
 
@@ -222,6 +210,7 @@ h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px;
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+    .nav-sidebar { width: 80%; } /* Plus large sur mobile */
     .split-layout { grid-template-columns: 1fr; }
     .arch-visual { height: 400px; margin-top: 40px; }
     .stats-grid { flex-direction: column; gap: 30px; }
@@ -229,5 +218,5 @@ h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px;
     .partners-grid { flex-direction: column; align-items: flex-start; }
     .horizontal-wrapper { padding-left: 20px; }
     .panel { width: 90vw; }
-    .nav-item { font-size: 2rem; }
+    .nav-item { font-size: 1.5rem; }
 }
