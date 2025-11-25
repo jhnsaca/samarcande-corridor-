@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMARCANDE CORRIDOR | Vision Territoriale</title>
+    <title>SAMARCANDE CAPITAL | Vision Territoriale</title>
     
     <!-- Fonts Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,15 +20,28 @@
 
     <!-- Loader Cinématique -->
     <div class="loader">
-        <div class="loader-text">SAMARCANDE</div>
+        <div class="loader-text">SAMARCANDE CAPITAL</div>
         <div class="loader-bar"><div class="loader-progress"></div></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation Overlay (Menu Latéral) -->
+    <div class="nav-overlay">
+        <div class="nav-menu-links">
+            <a href="#hero" class="nav-item"><span class="nav-num">01</span>Accueil</a>
+            <a href="#vocation" class="nav-item"><span class="nav-num">02</span>Vocation</a>
+            <a href="#corridor" class="nav-item"><span class="nav-num">03</span>Le Corridor</a>
+            <a href="#architecture" class="nav-item"><span class="nav-num">04</span>Architecture</a>
+            <a href="#decarbonation" class="nav-item"><span class="nav-num">05</span>Décarbonation</a>
+            <a href="#partenaires" class="nav-item"><span class="nav-num">06</span>Partenaires</a>
+            <a href="#contact" class="nav-item"><span class="nav-num">07</span>Contact</a>
+        </div>
+    </div>
+
+    <!-- Navbar Fixe -->
     <nav class="navbar">
-        <div class="logo">SAMARCANDE<span class="dot">.</span></div>
-        <div class="menu-btn">
-            <span>MENU</span>
+        <div class="logo">SAMARCANDE CAPITAL</div>
+        <div class="menu-btn" id="toggle-btn">
+            <span class="menu-text">MENU</span>
             <div class="lines">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -40,9 +53,9 @@
     <main id="smooth-wrapper">
         
         <!-- HERO SECTION -->
-        <header class="hero" data-scroll-section>
+        <header id="hero" class="hero" data-scroll-section>
             <div class="video-container">
-                <!-- Assure-toi que la vidéo est bien dans le dossier assets -->
+                <!-- Remplacer par assets/video-port.mp4 -->
                 <video autoplay muted loop playsinline class="hero-video">
                     <source src="assets/video-port.mp4" type="video/mp4">
                 </video>
@@ -67,10 +80,11 @@
             </div>
         </header>
 
-        <!-- SECTION 1: PROJET PHARE & VISION (Manifeste) -->
-        <section class="manifesto" data-scroll-section>
+        <!-- SECTION 1: VOCATION (Manifeste) -->
+        <section id="vocation" class="manifesto" data-scroll-section>
             <div class="container">
                 <span class="section-label">NOTRE VOCATION</span>
+                <!-- Le texte s'affichera plus vite grâce au réglage JS -->
                 <p class="big-text" id="manifesto-text">
                     Le Samarcande Corridor s’est donné comme ambition de relier <span class="highlight">Marseille, Lyon et Paris</span>. Une vision nationale de la commercialité et de la circularité, tournée vers l'Europe et l'International.
                 </p>
@@ -81,7 +95,7 @@
         </section>
 
         <!-- SECTION 2: LE CORRIDOR (Scroll Horizontal) -->
-        <section class="horizontal-section" id="horizontal-scroll">
+        <section id="corridor" class="horizontal-section">
             <div class="horizontal-wrapper">
                 
                 <!-- Panel 1: Marseille -->
@@ -90,7 +104,8 @@
                         <span class="panel-number">01</span>
                         <h2>Marseille<br>Méditerranée</h2>
                         <p>La porte d'entrée. Valoriser l'axe Rhône-Méditerranée comme hub mondial.</p>
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1548603908-656997722545?q=80&w=1000" alt="Port Marseille"></div>
+                        <!-- Image Portuaire / Mer -->
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1577149004697-5de0bb2e485d?q=80&w=1000" alt="Port Marseille"></div>
                     </div>
                 </div>
 
@@ -100,7 +115,8 @@
                         <span class="panel-number">02</span>
                         <h2>Lyon<br>Métropole</h2>
                         <p>Le carrefour industriel. Une logistique productive au cœur de l'Europe.</p>
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1620218783826-d47542273f6c?q=80&w=1000" alt="Lyon Industrie"></div>
+                        <!-- Image Industrielle / Fleuve -->
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1565610222536-ef125c59da2e?q=80&w=1000" alt="Lyon Industrie"></div>
                     </div>
                 </div>
 
@@ -110,7 +126,8 @@
                         <span class="panel-number">03</span>
                         <h2>Paris<br>& International</h2>
                         <p>Connecter la capitale aux flux décarbonés du sud.</p>
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1000" alt="Paris Business"></div>
+                        <!-- Image Business / Connexion -->
+                        <div class="img-box"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Paris Business"></div>
                     </div>
                 </div>
 
@@ -118,7 +135,7 @@
         </section>
 
         <!-- SECTION 3: ARCHITECTURE & DESIGN -->
-        <section class="architecture" data-scroll-section>
+        <section id="architecture" class="architecture" data-scroll-section>
             <div class="container split-layout">
                 <div class="arch-text reveal-up">
                     <span class="section-label">DESIGN & MATIÈRE</span>
@@ -127,13 +144,14 @@
                     <p>L'esthétique industrielle rencontre la fluidité de l'eau.</p>
                 </div>
                 <div class="arch-visual parallax-img">
-                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1000" alt="Architecture Béton">
+                    <!-- Image Architecture Béton / Lumière (Style Tadao Ando) -->
+                    <img src="https://images.unsplash.com/photo-1470723710355-95304d8aece4?q=80&w=1000" alt="Architecture Béton Lumière">
                 </div>
             </div>
         </section>
 
         <!-- SECTION 4: DÉCARBONATION & ENR -->
-        <section class="decarbonation" data-scroll-section>
+        <section id="decarbonation" class="decarbonation" data-scroll-section>
             <div class="decarb-bg"></div>
             <div class="container">
                 <div class="decarb-content reveal-up">
@@ -155,7 +173,7 @@
         </section>
 
         <!-- SECTION 5: ACTEURS & PARTENAIRES -->
-        <section class="partners-section" data-scroll-section>
+        <section id="partenaires" class="partners-section" data-scroll-section>
             <div class="container">
                 
                 <!-- Fondateurs -->
@@ -163,7 +181,7 @@
                     <h4>FONDATEURS</h4>
                     <div class="founders-grid">
                         <div class="founder-card">
-                            <span class="f-name">SACA</span>
+                            <span class="f-name">SAMARCANDE CAPITAL</span>
                             <span class="f-role">Investissement & Stratégie</span>
                         </div>
                         <div class="founder-card">
@@ -180,8 +198,9 @@
                     <h4>PARTENAIRES TERRITORIAUX</h4>
                     <div class="partners-grid">
                         <!-- CCI Lyon mise en avant -->
-                        <div class="partner-logo highlight-partner">
-                            <span>CCI LYON MÉTROPOLE</span>
+                        <div class="partner-card highlight-partner">
+                            <span class="p-name">CCI LYON MÉTROPOLE</span>
+                            <p class="p-desc">Un accompagnement stratégique et engagé pour le développement économique du territoire.</p>
                         </div>
                         <div class="partner-logo">
                             <span>PORT MARSEILLE FOS</span>
@@ -196,9 +215,9 @@
         </section>
 
         <!-- FOOTER -->
-        <footer class="footer" data-scroll-section>
+        <footer id="contact" class="footer" data-scroll-section>
             <div class="container">
-                <h2 class="footer-cta">REJOINDRE<br>LE CORRIDOR</h2>
+                <h2 class="footer-cta">NOUS<br>CONTACTER</h2>
                 <div class="footer-bottom">
                     <div class="contact-block">
                         <p>contact@samarcande-corridor.com</p>
