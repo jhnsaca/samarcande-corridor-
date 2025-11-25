@@ -155,15 +155,87 @@ ul { list-style: none; }
 blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); opacity: 0.9; }
 
 /* --- HORIZONTAL SCROLL --- */
-.horizontal-section { width: 100%; height: 100vh; overflow: hidden; background: var(--bg-secondary); display: flex; align-items: center; }
-.horizontal-wrapper { display: flex; gap: 100px; padding-left: 100px; width: 400%; }
-.panel { width: 80vw; height: 70vh; display: flex; align-items: center; position: relative; }
-.panel-content { position: relative; z-index: 10; pointer-events: none; } 
-.panel-number { font-family: var(--font-display); font-size: 8rem; color: rgba(255,255,255,0.03); position: absolute; top: -80px; left: -20px; }
-.panel h2 { font-family: var(--font-display); font-size: 4rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.panel p { font-size: 1.2rem; color: var(--accent-color); max-width: 350px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); background: rgba(0,0,0,0.2); padding: 10px; backdrop-filter: blur(5px); }
-.img-box { position: absolute; right: -200px; top: 0; width: 500px; height: 600px; overflow: hidden; z-index: 1; }
-.img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.horizontal-section { 
+    width: 100%; 
+    height: 100vh; 
+    overflow: hidden; 
+    background: var(--bg-secondary); 
+    display: flex; 
+    align-items: center; 
+}
+
+.horizontal-wrapper { 
+    display: flex; 
+    gap: 100px; 
+    padding-left: 100px; 
+    width: 400%; 
+}
+
+.panel { 
+    width: 80vw; 
+    height: 70vh; 
+    display: flex; 
+    align-items: center; 
+    position: relative; /* Important pour le positionnement absolu des enfants */
+}
+
+/* LE TEXTE (Premier Plan) */
+.panel-content { 
+    position: relative; 
+    z-index: 10; /* Le chiffre le plus haut = devant */
+    max-width: 600px; /* On élargit un peu la zone de texte */
+    padding-right: 50px; /* Marge de sécurité */
+} 
+
+.panel-number { 
+    font-family: var(--font-display); 
+    font-size: 8rem; 
+    color: rgba(255,255,255,0.05); 
+    position: absolute; 
+    top: -80px; 
+    left: -20px; 
+    z-index: -1; /* Derrière le texte mais devant l'image */
+}
+
+.panel h2 { 
+    font-family: var(--font-display); 
+    font-size: 4rem; 
+    text-transform: uppercase; 
+    line-height: 1; 
+    margin-bottom: 20px; 
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8); /* Ombre pour lisibilité sur l'image */
+}
+
+.panel p { 
+    font-size: 1.2rem; 
+    color: var(--accent-color); 
+    max-width: 400px; 
+    text-shadow: 0 5px 20px rgba(0,0,0,0.9); /* Ombre forte pour lisibilité */
+    background: rgba(0, 18, 26, 0.6); /* Fond semi-transparent pour bien lire */
+    padding: 20px; 
+    backdrop-filter: blur(10px); /* Effet verre flouté */
+    border-left: 2px solid var(--accent-color);
+}
+
+/* L'IMAGE (Arrière Plan) */
+.img-box { 
+    position: absolute; 
+    right: 0; /* Collé à droite */
+    top: 0; 
+    width: 65%; /* Prend 65% de la largeur du panel */
+    height: 100%; 
+    overflow: hidden; 
+    z-index: 1; /* Chiffre bas = derrière */
+    mask-image: linear-gradient(to right, transparent, black 20%); /* Fondu élégant vers la gauche */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+}
+
+.img-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 1s; 
+}
 
 /* --- ARCHITECTURE --- */
 .architecture { padding: 150px 50px; background: #051016; }
