@@ -1,9 +1,14 @@
 /* --- VARIABLES & RESET --- */ 
 :root {
-    --bg-color: #00121A;
-    --bg-secondary: #001F2B;
+    /* Anciennes couleurs plates (pour fallback) */
+    --bg-color: #000F14; 
+    
+    /* NOUVEAUX DÉGRADÉS PREMIUM */
+    --bg-gradient-main: linear-gradient(180deg, #000910 0%, #001520 100%); /* Noir bleuté vers Bleu Nuit */
+    --bg-gradient-secondary: linear-gradient(135deg, #001824 0%, #002F4B 100%); /* Bleu Prusse vers Bleu Océan Profond */
+    
     --text-color: #EAEAEA;
-    --accent-color: #C4B085;
+    --accent-color: #C4B085; /* Or Mat */
     --border-color: rgba(196, 176, 133, 0.2);
     
     --font-display: 'Oswald', sans-serif;
@@ -13,14 +18,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
 body {
-    background-color: var(--bg-color);
+    background: var(--bg-gradient-main); /* On remplace background-color */
     color: var(--text-color);
     font-family: var(--font-body);
     overflow-x: hidden;
 }
-
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
 
 /* --- CUSTOM CURSOR --- */ /* --- update -- */
 .cursor-dot, .cursor-outline {
@@ -80,7 +82,7 @@ ul { list-style: none; }
     right: 0;
     width: 450px; /* Largeur fixe */
     height: 100vh;
-    background: #001824; /* Bleu très foncé */
+    background: linear-gradient(to bottom, #001018, #002030);
     z-index: 150;
     transform: translateX(100%); /* Caché à droite */
     display: flex;
@@ -147,7 +149,10 @@ ul { list-style: none; }
 .hero-desc { text-align: right; font-size: 1rem; line-height: 1.4; opacity: 0.8; }
 
 /* --- MANIFESTO --- */
-.manifesto { padding: 150px 50px; background: var(--bg-color); }
+.manifesto { 
+    padding: 150px 50px; 
+    background: var(--bg-gradient-main); /* Continuité du fond principal */
+}
 .section-label { display: block; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--accent-color); margin-bottom: 30px; text-transform: uppercase; }
 .big-text { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.3; max-width: 1200px; margin: 0 auto; color: #889; }
 .highlight { color: #fff; }
@@ -159,7 +164,7 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     width: 100%; 
     height: 100vh; 
     overflow: hidden; 
-    background: var(--bg-secondary); 
+    background: var(--bg-gradient-secondary); /* Le dégradé plus riche */
     display: flex; 
     align-items: center; 
 }
@@ -246,7 +251,12 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .arch-visual img { width: 100%; height: 120%; object-fit: cover; }
 
 /* --- DECARBONATION --- */
-.decarbonation { padding: 150px 50px; background: var(--bg-secondary); position: relative; overflow: hidden; }
+.decarbonation { 
+    padding: 150px 50px; 
+    background: var(--bg-gradient-secondary); /* Idem */
+    position: relative; 
+    overflow: hidden; 
+}
 .decarb-bg { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(circle, rgba(0,47,75,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 0; }
 .decarb-content { position: relative; z-index: 1; max-width: 800px; }
 .decarb-content h3 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 30px; }
@@ -255,7 +265,10 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .stat-desc { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
 /* --- PARTNERS --- */
-.partners-section { padding: 150px 50px; background: var(--bg-color); }
+.partners-section { 
+    padding: 150px 50px; 
+    background: var(--bg-gradient-main); 
+}
 .founders-block, .partners-block { margin-bottom: 60px; }
 h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px; text-transform: uppercase; }
 .founders-grid { display: flex; gap: 40px; }
