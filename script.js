@@ -85,16 +85,16 @@ tlLoader
 
 // 4. TEXT REVEAL (VOCATION)
 const text = new SplitType('#manifesto-text', { types: 'words, chars' });
+
 gsap.from(text.chars, {
     scrollTrigger: {
         trigger: '.manifesto',
-        start: 'top 80%',
-        end: 'bottom 60%',
-        scrub: true,
+        start: 'top 85%',    
+        end: 'center center', 
+        scrub: true,         
     },
-    opacity: 0.1,
-    stagger: 0.1,
-    color: '#001F2B'
+    opacity: 0.1,           
+    stagger: 0.1            
 });
 
 // 5. HORIZONTAL SCROLL
