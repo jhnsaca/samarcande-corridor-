@@ -70,15 +70,17 @@ gsap.from(text.chars, {
 
 // 5. HORIZONTAL SCROLL
 let sections = gsap.utils.toArray(".panel");
+
 gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1),
+    xPercent: -100 * (sections.length - 1), // Déplace de -100% * (3-1) = -200%
     ease: "none",
     scrollTrigger: {
         trigger: ".horizontal-section",
         pin: true,
         scrub: 1,
-        snap: 1 / (sections.length - 1),
-        end: () => "+=" + document.querySelector(".horizontal-section").offsetWidth
+        // On ajuste la durée du scroll pour qu'elle soit plus naturelle
+        end: () => "+=" + window.innerWidth * 2, 
+        invalidateOnRefresh: true // Recalcule si on redimensionne la fenêtre
     }
 });
 
