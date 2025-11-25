@@ -146,7 +146,7 @@ body {
 
 .hero-content { text-align: center; z-index: 2; width: 100%; }
 .hero-label { font-size: 0.9rem; letter-spacing: 0.3em; color: var(--accent-color); margin-bottom: 20px; text-transform: uppercase; }
-.hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 8.5rem); line-height: 1; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); 
+.hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 8.5rem); line-height: 1; text-transform: uppercase; color: rgba(255, 255, 255, 0.85);} 
 .line-wrap { overflow: hidden; }
 .anim-title { display: block; transform: translateY(100%); }
 
