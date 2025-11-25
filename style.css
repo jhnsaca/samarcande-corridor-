@@ -165,24 +165,27 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     height: 100vh; 
     overflow: hidden; 
     background: var(--bg-gradient-secondary); 
-    display: flex; 
-    align-items: center; 
+    position: relative;
 }
 
 .horizontal-wrapper { 
     display: flex; 
-    width: 300%; /* 3 slides x 100% = 300% */
+    width: 300%; /* 3 slides */
     height: 100%;
     flex-wrap: nowrap;
+    padding: 0; /* IMPORTANT : Pas de padding ici */
+    margin: 0;
 }
 
 .panel { 
-    width: 100vw; /* PREND TOUT L'ÉCRAN */
+    width: 100vw; /* Largeur écran complet */
     height: 100vh; 
     display: flex; 
     align-items: center; 
+    justify-content: flex-start; /* Aligne le contenu à gauche */
     position: relative; 
-    padding: 0 10vw; /* Marge interne gauche/droite pour le contenu */
+    flex-shrink: 0; /* CRUCIAL : Empêche le panneau de rétrécir */
+    padding: 0 10vw; /* Marge interne pour le texte */
     box-sizing: border-box;
 }
 
@@ -190,38 +193,41 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .panel-content { 
     position: relative; 
     z-index: 10; 
-    max-width: 650px; 
-    margin-top: 50px; /* Petit ajustement vertical */
+    max-width: 600px; 
+    margin-top: 0;
 } 
 
 .panel-number { 
     font-family: var(--font-display); 
-    font-size: 10rem; /* Un peu plus gros */
+    font-size: 12rem; 
     color: rgba(255,255,255,0.03); 
     position: absolute; 
-    top: -100px; 
+    top: -120px; 
     left: -50px; 
     z-index: -1; 
+    line-height: 1;
 }
 
 .panel h2 { 
     font-family: var(--font-display); 
-    font-size: clamp(3rem, 5vw, 5rem); /* Taille adaptative */
+    font-size: clamp(3rem, 6vw, 6rem); 
     text-transform: uppercase; 
     line-height: 1; 
-    margin-bottom: 20px; 
+    margin-bottom: 30px; 
     text-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+    color: #fff;
 }
 
 .panel p { 
     font-size: 1.2rem; 
     color: var(--accent-color); 
-    max-width: 450px; 
+    max-width: 500px; 
     text-shadow: 0 5px 20px rgba(0,0,0,0.9); 
-    background: rgba(0, 18, 26, 0.6); 
-    padding: 25px; 
+    background: rgba(0, 18, 26, 0.7); 
+    padding: 30px; 
     backdrop-filter: blur(10px); 
-    border-left: 3px solid var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    line-height: 1.6;
 }
 
 /* L'IMAGE (Arrière Plan) */
@@ -229,12 +235,20 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     position: absolute; 
     right: 0; 
     top: 0; 
-    width: 60%; /* Prend 60% de l'écran */
+    width: 100%; /* On prend TOUTE la largeur du panel */
     height: 100%; 
     overflow: hidden; 
     z-index: 1; 
-    mask-image: linear-gradient(to right, transparent, black 15%); 
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%);
+}
+
+/* Masque dégradé pour que le texte soit lisible à gauche */
+.img-box::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+    z-index: 2;
 }
 
 .img-box img { 
@@ -244,15 +258,13 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
     transition: transform 1s; 
 }
 
-/* RESPONSIVE MOBILE (Important pour que ça ne coupe pas sur téléphone) */
+/* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
-    .panel { padding: 0 20px; justify-content: center; }
-    .img-box { width: 100%; opacity: 0.4; mask-image: none; -webkit-mask-image: none; }
-    .panel-content { text-align: center; margin-top: 0; }
+    .panel { padding: 0 20px; justify-content: center; text-align: center; }
+    .panel-content { width: 100%; }
     .panel p { margin: 0 auto; border-left: none; border-top: 3px solid var(--accent-color); }
-    .panel-number { left: 50%; transform: translateX(-50%); top: -50px; }
+    .img-box::after { background: rgba(0,0,0,0.6); } /* Fond plus sombre sur mobile */
 }
-
 /* --- ARCHITECTURE --- */
 .architecture { padding: 150px 50px; background: #051016; }
 .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
