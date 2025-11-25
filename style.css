@@ -270,16 +270,69 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 /* --- DECARBONATION --- */
 .decarbonation { 
     padding: 150px 50px; 
-    background: var(--bg-gradient-secondary); /* Idem */
     position: relative; 
     overflow: hidden; 
+    /* On enlève la couleur de fond unie car on met une image */
 }
-.decarb-bg { position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(circle, rgba(0,47,75,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 0; }
-.decarb-content { position: relative; z-index: 1; max-width: 800px; }
-.decarb-content h3 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 30px; }
-.stats-grid { display: flex; gap: 60px; margin-top: 50px; }
-.stat-num { display: block; font-family: var(--font-display); font-size: 4rem; color: var(--accent-color); line-height: 1; }
-.stat-desc { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+.decarb-bg { 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 0;
+    
+    /* L'IMAGE DE FOND */
+    background-image: url('assets/co2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* LE FILTRE SOMBRE (Pour la lisibilité) */
+.decarb-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Un filtre bleu nuit très profond pour rester dans le thème */
+    background: rgba(0, 18, 26, 0.85); 
+    z-index: 1;
+}
+
+.decarb-content { 
+    position: relative; 
+    z-index: 2; /* Le texte passe DEVANT l'image et le filtre */
+    max-width: 800px; 
+}
+
+.decarb-content h3 { 
+    font-family: var(--font-display); 
+    font-size: 3.5rem; 
+    margin-bottom: 30px; 
+    color: #fff;
+}
+
+.stats-grid { 
+    display: flex; 
+    gap: 60px; 
+    margin-top: 50px; 
+}
+
+.stat-num { 
+    display: block; 
+    font-family: var(--font-display); 
+    font-size: 4rem; 
+    color: var(--accent-color); 
+    line-height: 1; 
+}
+
+.stat-desc { 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+    color: #ccc;
+}
 
 /* --- PARTNERS --- */
 .partners-section { 
