@@ -24,8 +24,14 @@
         <div class="loader-bar"><div class="loader-progress"></div></div>
     </div>
 
-    <!-- Navigation Overlay (Menu Latéral) -->
-    <div class="nav-overlay">
+    <!-- Backdrop (Fond sombre quand menu ouvert) -->
+    <div class="menu-backdrop"></div>
+
+    <!-- Navigation Sidebar (Menu Latéral Droit) -->
+    <div class="nav-sidebar">
+        <div class="nav-header">
+            <span>NAVIGATION</span>
+        </div>
         <div class="nav-menu-links">
             <a href="#hero" class="nav-item"><span class="nav-num">01</span>Accueil</a>
             <a href="#vocation" class="nav-item"><span class="nav-num">02</span>Vocation</a>
@@ -34,6 +40,9 @@
             <a href="#decarbonation" class="nav-item"><span class="nav-num">05</span>Décarbonation</a>
             <a href="#partenaires" class="nav-item"><span class="nav-num">06</span>Partenaires</a>
             <a href="#contact" class="nav-item"><span class="nav-num">07</span>Contact</a>
+        </div>
+        <div class="nav-footer">
+            <p>Samarcande Capital<br>Marseille — Lyon — Paris</p>
         </div>
     </div>
 
@@ -55,7 +64,6 @@
         <!-- HERO SECTION -->
         <header id="hero" class="hero" data-scroll-section>
             <div class="video-container">
-                <!-- Remplacer par assets/video-port.mp4 -->
                 <video autoplay muted loop playsinline class="hero-video">
                     <source src="assets/video-port.mp4" type="video/mp4">
                 </video>
@@ -80,11 +88,10 @@
             </div>
         </header>
 
-        <!-- SECTION 1: VOCATION (Manifeste) -->
+        <!-- SECTION 1: VOCATION -->
         <section id="vocation" class="manifesto" data-scroll-section>
             <div class="container">
                 <span class="section-label">NOTRE VOCATION</span>
-                <!-- Le texte s'affichera plus vite grâce au réglage JS -->
                 <p class="big-text" id="manifesto-text">
                     Le Samarcande Corridor s’est donné comme ambition de relier <span class="highlight">Marseille, Lyon et Paris</span>. Une vision nationale de la commercialité et de la circularité, tournée vers l'Europe et l'International.
                 </p>
@@ -98,25 +105,29 @@
         <section id="corridor" class="horizontal-section">
             <div class="horizontal-wrapper">
                 
-                <!-- Panel 1: Marseille -->
+                <!-- Panel 1: Marseille (Sunset Port) -->
                 <div class="panel">
                     <div class="panel-content">
                         <span class="panel-number">01</span>
                         <h2>Marseille<br>Méditerranée</h2>
                         <p>La porte d'entrée. Valoriser l'axe Rhône-Méditerranée comme hub mondial.</p>
-                        <!-- Image Portuaire / Mer -->
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1577149004697-5de0bb2e485d?q=80&w=1000" alt="Port Marseille"></div>
+                        <div class="img-box">
+                            <!-- Image Port Sunset -->
+                            <img src="https://images.unsplash.com/photo-1623526369173-ccdb9cc5032f?q=80&w=1000" alt="Port Marseille Sunset">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Panel 2: Lyon -->
+                <!-- Panel 2: Lyon (Ville Centre) -->
                 <div class="panel">
                     <div class="panel-content">
                         <span class="panel-number">02</span>
                         <h2>Lyon<br>Métropole</h2>
                         <p>Le carrefour industriel. Une logistique productive au cœur de l'Europe.</p>
-                        <!-- Image Industrielle / Fleuve -->
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1565610222536-ef125c59da2e?q=80&w=1000" alt="Lyon Industrie"></div>
+                        <div class="img-box">
+                            <!-- Image Lyon Centre / Saône -->
+                            <img src="https://images.unsplash.com/photo-1603620822836-b769532f5e66?q=80&w=1000" alt="Lyon Centre">
+                        </div>
                     </div>
                 </div>
 
@@ -126,8 +137,9 @@
                         <span class="panel-number">03</span>
                         <h2>Paris<br>& International</h2>
                         <p>Connecter la capitale aux flux décarbonés du sud.</p>
-                        <!-- Image Business / Connexion -->
-                        <div class="img-box"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Paris Business"></div>
+                        <div class="img-box">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" alt="Paris Business">
+                        </div>
                     </div>
                 </div>
 
@@ -144,13 +156,13 @@
                     <p>L'esthétique industrielle rencontre la fluidité de l'eau.</p>
                 </div>
                 <div class="arch-visual parallax-img">
-                    <!-- Image Architecture Béton / Lumière (Style Tadao Ando) -->
-                    <img src="https://images.unsplash.com/photo-1470723710355-95304d8aece4?q=80&w=1000" alt="Architecture Béton Lumière">
+                    <!-- Image Eco-Responsable / Béton / Végétal -->
+                    <img src="https://images.unsplash.com/photo-1518005052357-e9871951f3a2?q=80&w=1000" alt="Architecture Durable Béton">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: DÉCARBONATION & ENR -->
+        <!-- SECTION 4: DÉCARBONATION -->
         <section id="decarbonation" class="decarbonation" data-scroll-section>
             <div class="decarb-bg"></div>
             <div class="container">
@@ -172,11 +184,10 @@
             </div>
         </section>
 
-        <!-- SECTION 5: ACTEURS & PARTENAIRES -->
+        <!-- SECTION 5: PARTENAIRES -->
         <section id="partenaires" class="partners-section" data-scroll-section>
             <div class="container">
                 
-                <!-- Fondateurs -->
                 <div class="founders-block reveal-up">
                     <h4>FONDATEURS</h4>
                     <div class="founders-grid">
@@ -193,11 +204,9 @@
 
                 <div class="divider"></div>
 
-                <!-- Partenaires -->
                 <div class="partners-block reveal-up">
                     <h4>PARTENAIRES TERRITORIAUX</h4>
                     <div class="partners-grid">
-                        <!-- CCI Lyon mise en avant -->
                         <div class="partner-card highlight-partner">
                             <span class="p-name">CCI LYON MÉTROPOLE</span>
                             <p class="p-desc">Un accompagnement stratégique et engagé pour le développement économique du territoire.</p>
