@@ -423,10 +423,12 @@ h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px;
     letter-spacing: 0.1em;
     border-bottom: 1px solid transparent;
     transition: 0.3s;
+    color: #ccc; /* AJOUTÉ : La même couleur que l'email */
+    text-decoration: none;
 }
 
 .social-block a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Devient Or au survol */
     border-color: var(--accent-color);
 }
 
