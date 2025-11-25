@@ -72,15 +72,15 @@ gsap.from(text.chars, {
 let sections = gsap.utils.toArray(".panel");
 
 gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1), // Déplace de -100% * (3-1) = -200%
+    xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
         trigger: ".horizontal-section",
         pin: true,
         scrub: 1,
-        // On ajuste la durée du scroll pour qu'elle soit plus naturelle
-        end: () => "+=" + window.innerWidth * 2, 
-        invalidateOnRefresh: true // Recalcule si on redimensionne la fenêtre
+        // On définit la durée du scroll basée sur la largeur de la fenêtre
+        end: () => "+=" + (document.querySelector(".horizontal-wrapper").offsetWidth - window.innerWidth),
+        invalidateOnRefresh: true
     }
 });
 
