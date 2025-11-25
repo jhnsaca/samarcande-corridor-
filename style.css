@@ -55,7 +55,14 @@ body {
 .loader-text { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.2em; margin-bottom: 20px; color: var(--accent-color); }
 .loader-bar { width: 200px; height: 2px; background: #222; position: relative; overflow: hidden; }
 .loader-progress { width: 0%; height: 100%; background: var(--accent-color); }
-
+.loader-counter {
+    margin-top: 15px;
+    font-family: var(--font-display); /* Police Oswald */
+    font-size: 1rem;
+    color: var(--accent-color); /* Couleur Or */
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
 /* --- NAVBAR --- */
 .navbar {
     position: fixed;
