@@ -70,13 +70,17 @@ tlLoader
         duration: 1.5,
         ease: 'power2.out'
     }, "-=0.8")
-    .to('.anim-title', {
+    
+    // EN MÊME TEMPS
+    .to('.anim-title, .hero-label .anim-text', {
         y: 0,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.1, 
         ease: 'power3.out'
     }, "-=0.5")
-    .to('.anim-text', {
+    
+    // Anime la description 
+    .to('.hero-desc.anim-text', {
         opacity: 1,
         y: 0,
         duration: 1,
