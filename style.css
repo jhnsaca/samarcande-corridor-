@@ -1,4 +1,4 @@
-/* --- VARIABLES & RESET --- */
+/* --- VARIABLES & RESET --- */ 
 :root {
     --bg-color: #00121A;
     --bg-secondary: #001F2B;
@@ -22,7 +22,7 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* --- CUSTOM CURSOR --- */
+/* --- CUSTOM CURSOR --- */ /* --- update -- */
 .cursor-dot, .cursor-outline {
     position: fixed;
     top: 0; left: 0;
