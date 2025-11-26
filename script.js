@@ -52,23 +52,39 @@ gsap.from(text.chars, {
     opacity: 0.1, stagger: 0.1, color: '#001F2B'
 });
 
-// 5. HORIZONTAL SCROLL (Ajusté pour 70vw)
+// 5. HORIZONTAL SCROLL (Bi-directionnel : Vertical & Horizontal)
 let sections = gsap.utils.toArray(".panel");
 let scrollContainer = document.querySelector(".horizontal-wrapper");
 
-gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1), // On déplace toujours les éléments
+// A. L'animation GSAP classique (pilotée par le scroll vertical)
+let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
         trigger: ".horizontal-section",
         pin: true,
-        scrub: 1.5,
-        // Calcul dynamique : Largeur totale du contenu - Largeur de la fenêtre
+        scrub: 1, // Fluidité (1 seconde de lag pour l'effet "smooth")
+        // On définit la longueur du scroll vertical nécessaire
         end: () => "+=" + (scrollContainer.scrollWidth - window.innerWidth),
         invalidateOnRefresh: true,
         anticipatePin: 1
     }
 });
+
+// B.  Scroll Horizontal (Trackpad / Souris latérale)
+//  mouvement de la souris/trackpad
+window.addEventListener("wheel", (e) => {
+    
+    if (scrollTween.scrollTrigger.isActive) {
+        
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            
+            e.preventDefault();
+            
+            window.scrollBy(0, e.deltaX);
+        }
+    }
+}, { passive: false }); // "passive: false" 
 
 // 6. ARCHITECTURE PARALLAX
 gsap.to('.parallax-img img', {
