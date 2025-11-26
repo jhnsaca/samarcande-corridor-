@@ -393,7 +393,20 @@ h4 { font-size: 0.9rem; letter-spacing: 0.2em; color: #666; margin-bottom: 40px;
     background-size: cover;
     background-position: center;
 }
+/* Style du lien email CTA */
+.email-link {
+    display: block;
+    color: #ccc; 
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    text-decoration: none; 
+    transition: 0.3s; 
+    cursor: pointer;
+}
 
+.email-link:hover {
+    color: var(--accent-color); /* Devient Or au survol */
+}
 /* FILTRE SOMBRE (Overlay) */
 .footer::after {
     content: '';
