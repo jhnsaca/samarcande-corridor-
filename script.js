@@ -30,7 +30,6 @@ window.addEventListener('scroll', () => {
 });
 
 // 3. LOADER CINÉMATIQUE (Version Sécurisée)
-// On attend que le HTML soit chargé
 document.addEventListener("DOMContentLoaded", (event) => {
     
     const tlLoader = gsap.timeline();
@@ -38,17 +37,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     tlLoader
         .to('.loader-progress', {
             width: '100%',
-            duration: 2, // Durée du chargement (2 secondes)
+            duration: 2,
             ease: 'power2.inOut',
             onUpdate: function() {
-                // Mise à jour du pourcentage
                 const progress = Math.round(this.progress() * 100);
                 const counter = document.querySelector('.loader-counter');
                 if(counter) counter.textContent = progress + '%';
             }
         })
         .to('.loader', {
-            y: '-100%', // Le rideau se lève
+            y: '-100%',
             duration: 1,
             ease: 'power4.inOut',
             delay: 0.2
@@ -70,96 +68,87 @@ document.addEventListener("DOMContentLoaded", (event) => {
             duration: 1,
             ease: 'power3.out'
         }, "-=0.8");
-        
 });
 
 // 4. TEXT REVEAL (VOCATION)
-const text = new SplitType('#manifesto-text', { types: 'words, chars' });
-gsap.from(text.chars, {
-    scrollTrigger: { trigger: '.manifesto', start: 'top 85%', end: 'center center', scrub: true },
-    opacity: 0.1, stagger: 0.1, color: '#001F2B'
-});
+// On vérifie si SplitType est chargé pour éviter les erreurs
+if (typeof SplitType !== 'undefined') {
+    const text = new SplitType('#manifesto-text', { types: 'words, chars' });
+    gsap.from(text.chars, {
+        scrollTrigger: { trigger: '.manifesto', start: 'top 85%', end: 'center center', scrub: true },
+        opacity: 0.1, stagger: 0.1, color: '#001F2B'
+    });
+}
 
 // 5. ROADMAP SPECTACULAR ANIMATION
-// préparation chemin SVG
 const path = document.querySelector('.path-active');
-const pathLength = path.getTotalLength();
 
-// cache le chemin initialement
-path.style.strokeDasharray = pathLength;
-path.style.strokeDashoffset = pathLength;
+// Sécurité : on ne lance l'animation que si le SVG existe
+if (path) {
+    const pathLength = path.getTotalLength();
 
-let tlRoadmap = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".roadmap-section",
-        start: "top top",
-        end: "+=149%", // AJUSTÉ : Plus court pour réduire l'espace
-        scrub: 1,
-        pin: true,
-    }
-});      
-        onUpdate: (self) => {
-            // allume le titre quand on commence à scroller
-            if(self.progress > 0.1) {
-                gsap.to('.roadmap-header-fixed h3', { opacity: 1, duration: 0.5 });
+    // Cache le chemin initialement
+    path.style.strokeDasharray = pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    let tlRoadmap = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".roadmap-section",
+            start: "top top",
+            end: "+=150%", 
+            scrub: 1,
+            pin: true,
+            onUpdate: (self) => {
+                // Allume le titre quand on commence à scroller
+                if(self.progress > 0.1) {
+                    gsap.to('.roadmap-header-fixed h3', { opacity: 1, duration: 0.5 });
+                }
             }
         }
-    }
-});
-
-// ÉTAPE 1 : Dessiner la ligne de Marseille à Paris
-tlRoadmap.to(path, {
-    strokeDashoffset: 0,
-    ease: "none",
-    duration: 3
-});
-
-// ÉTAPE 2 : Faire apparaître les villes au bon moment
-// Marseille (Dès le début)
-tlRoadmap.to('#city-marseille .city-label, #city-marseille .city-data', { opacity: 1, duration: 0.5 }, 0.1);
-tlRoadmap.fromTo('#city-marseille .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 0);
-
-// Lyon (Au milieu du tracé)
-tlRoadmap.to('#city-lyon .city-label, #city-lyon .city-data', { opacity: 1, duration: 0.5 }, 1.5);
-tlRoadmap.fromTo('#city-lyon .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 1.5);
-
-// Paris (À la fin du tracé)
-tlRoadmap.to('#city-paris .city-label, #city-paris .city-data', { opacity: 1, duration: 0.5 }, 2.8);
-tlRoadmap.fromTo('#city-paris .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 2.8);
-
-// ÉTAPE 3 : Explosion vers l'Europe (Fin)
-tlRoadmap.to('.burst-line', { strokeDashoffset: 0, duration: 1, stagger: 0.1 }, 3);
-tlRoadmap.to('.europe-label', { opacity: 1, y: -10, duration: 1 }, 3.2);
-
-gsap.utils.toArray('.map-line').forEach(line => {
-    gsap.to(line, {
-        scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%', end: 'bottom 70%', scrub: true },
-        width: '100%' // Fallback simple
     });
-});
-// Note: Le CSS gère l'animation via ::after width transition
-gsap.from('.map-point', {
-    scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%' },
-    opacity: 0, y: 20, stagger: 0.3, duration: 0.8
-});
-// Animation des lignes via CSS direct dans le JS pour plus de contrôle
-gsap.to('.l-1', { scrollTrigger: { trigger: '.roadmap-section', start: 'top 60%', end: 'top 40%', scrub: true }, width: '150px' }); // Ajuster selon CSS
 
-// 6. HORIZONTAL SCROLL (100vw Standard)
+    // ÉTAPE 1 : Dessiner la ligne
+    tlRoadmap.to(path, {
+        strokeDashoffset: 0,
+        ease: "none",
+        duration: 3
+    });
+
+    // ÉTAPE 2 : Faire apparaître les villes
+    // Marseille
+    tlRoadmap.to('#city-marseille .city-label, #city-marseille .city-data', { opacity: 1, duration: 0.5 }, 0.1);
+    tlRoadmap.fromTo('#city-marseille .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 0);
+
+    // Lyon
+    tlRoadmap.to('#city-lyon .city-label, #city-lyon .city-data', { opacity: 1, duration: 0.5 }, 1.5);
+    tlRoadmap.fromTo('#city-lyon .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 1.5);
+
+    // Paris
+    tlRoadmap.to('#city-paris .city-label, #city-paris .city-data', { opacity: 1, duration: 0.5 }, 2.8);
+    tlRoadmap.fromTo('#city-paris .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 2.8);
+
+    // ÉTAPE 3 : Explosion vers l'Europe
+    tlRoadmap.to('.burst-line', { strokeDashoffset: 0, duration: 1, stagger: 0.1 }, 3);
+    tlRoadmap.to('.europe-label', { opacity: 1, y: -10, duration: 1 }, 3.2);
+}
+
+// 6. HORIZONTAL SCROLL
 let sections = gsap.utils.toArray(".panel");
 let scrollContainer = document.querySelector(".horizontal-wrapper");
 
-gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1),
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".horizontal-section",
-        pin: true,
-        scrub: 1,
-        end: () => "+=" + (scrollContainer.scrollWidth - window.innerWidth),
-        invalidateOnRefresh: true
-    }
-});
+if (scrollContainer) {
+    gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".horizontal-section",
+            pin: true,
+            scrub: 1,
+            end: () => "+=" + (scrollContainer.scrollWidth - window.innerWidth),
+            invalidateOnRefresh: true
+        }
+    });
+}
 
 // 7. ARCHITECTURE PARALLAX
 gsap.to('.parallax-img img', {
@@ -195,11 +184,14 @@ function toggleMenu() {
     }
     isMenuOpen = !isMenuOpen;
 }
-menuBtn.addEventListener('click', toggleMenu);
-menuBackdrop.addEventListener('click', toggleMenu);
-navItems.forEach(item => { item.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }); });
 
-// 10. GESTION DES LANGUES (FR/EN) - COMPLÈTE
+if (menuBtn) {
+    menuBtn.addEventListener('click', toggleMenu);
+    menuBackdrop.addEventListener('click', toggleMenu);
+    navItems.forEach(item => { item.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }); });
+}
+
+// 10. GESTION DES LANGUES (FR/EN)
 const translations = {
     fr: {
         "menu": "MENU",
@@ -302,8 +294,11 @@ function setLanguage(lang) {
         if(translations[lang][key]) el.innerHTML = translations[lang][key];
     });
 }
-btnFr.addEventListener('click', () => setLanguage('fr'));
-btnEn.addEventListener('click', () => setLanguage('en'));
+
+if (btnFr && btnEn) {
+    btnFr.addEventListener('click', () => setLanguage('fr'));
+    btnEn.addEventListener('click', () => setLanguage('en'));
+}
 
 // --- FORCER LA LECTURE VIDÉO ---
 window.addEventListener('load', () => {
