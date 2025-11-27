@@ -19,7 +19,7 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// 2. NAVBAR SCROLL EFFECT (Glassmorphism)
+// 2. NAVBAR SCROLL EFFECT
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -52,47 +52,67 @@ gsap.from(text.chars, {
     opacity: 0.1, stagger: 0.1, color: '#001F2B'
 });
 
-// 5. HORIZONTAL SCROLL (Bi-directionnel : Vertical & Horizontal)
+// 5. ROADMAP ANIMATION (NEW)
+const lines = document.querySelectorAll('.map-line');
+lines.forEach((line, index) => {
+    gsap.to(line, {
+        scrollTrigger: {
+            trigger: '.roadmap-section',
+            start: 'top 60%',
+            end: 'bottom 60%',
+            scrub: 1
+        },
+        '--line-progress': '100%', // On utilisera une variable CSS ou width direct
+        onUpdate: function() {
+            // Hack pour animer le pseudo-element via CSS variable ou direct style
+            line.style.setProperty('--w', this.progress() * 100 + '%');
+            // Pour mobile (height) vs desktop (width)
+            if(window.innerWidth > 768) {
+                line.querySelector('::after').style.width = this.progress() * 100 + '%';
+            } else {
+                line.querySelector('::after').style.height = this.progress() * 100 + '%';
+            }
+        }
+    });
+});
+// Animation simplifiée pour les lignes
+gsap.utils.toArray('.map-line').forEach(line => {
+    gsap.to(line, {
+        scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%', end: 'bottom 70%', scrub: true },
+        width: '100%' // Fallback simple
+    });
+});
+// Note: Le CSS gère l'animation via ::after width transition, ici on déclenche juste l'apparition des points
+gsap.from('.map-point', {
+    scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%' },
+    opacity: 0, y: 20, stagger: 0.3, duration: 0.8
+});
+// Animation des lignes via CSS direct dans le JS pour plus de contrôle
+gsap.to('.l-1', { scrollTrigger: { trigger: '.roadmap-section', start: 'top 60%', end: 'top 40%', scrub: true }, width: '150px' }); // Ajuster selon CSS
+
+// 6. HORIZONTAL SCROLL (100vw Standard)
 let sections = gsap.utils.toArray(".panel");
 let scrollContainer = document.querySelector(".horizontal-wrapper");
 
-// A. L'animation GSAP classique (pilotée par le scroll vertical)
-let scrollTween = gsap.to(sections, {
+gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: "none",
     scrollTrigger: {
         trigger: ".horizontal-section",
         pin: true,
-        scrub: 1, // Fluidité (1 seconde de lag pour l'effet "smooth")
-        // On définit la longueur du scroll vertical nécessaire
+        scrub: 1,
         end: () => "+=" + (scrollContainer.scrollWidth - window.innerWidth),
-        invalidateOnRefresh: true,
-        anticipatePin: 1
+        invalidateOnRefresh: true
     }
 });
 
-// B.  Scroll Horizontal (Trackpad / Souris latérale)
-//  mouvement de la souris/trackpad
-window.addEventListener("wheel", (e) => {
-    
-    if (scrollTween.scrollTrigger.isActive) {
-        
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-            
-            e.preventDefault();
-            
-            window.scrollBy(0, e.deltaX);
-        }
-    }
-}, { passive: false }); // "passive: false" 
-
-// 6. ARCHITECTURE PARALLAX
+// 7. ARCHITECTURE PARALLAX
 gsap.to('.parallax-img img', {
     y: '-20%',
     scrollTrigger: { trigger: '.architecture', start: 'top bottom', end: 'bottom top', scrub: true }
 });
 
-// 7. GENERAL REVEAL UP
+// 8. GENERAL REVEAL UP
 gsap.utils.toArray('.reveal-up').forEach(elem => {
     gsap.to(elem, {
         scrollTrigger: { trigger: elem, start: 'top 85%' },
@@ -100,7 +120,7 @@ gsap.utils.toArray('.reveal-up').forEach(elem => {
     });
 });
 
-// 8. MENU SIDEBAR LOGIC
+// 9. MENU SIDEBAR LOGIC
 const menuBtn = document.getElementById('toggle-btn');
 const navSidebar = document.querySelector('.nav-sidebar');
 const menuBackdrop = document.querySelector('.menu-backdrop');
@@ -124,7 +144,7 @@ menuBtn.addEventListener('click', toggleMenu);
 menuBackdrop.addEventListener('click', toggleMenu);
 navItems.forEach(item => { item.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }); });
 
-// 9. GESTION DES LANGUES (FR/EN)
+// 10. GESTION DES LANGUES (FR/EN)
 const translations = {
     fr: {
         "menu": "MENU",
@@ -148,7 +168,6 @@ const translations = {
         "role1": "Investissement & Stratégie",
         "role2": "Foncier & Énergie",
         "partners": "PARTENAIRES TERRITORIAUX",
-        "cci-desc": "Un accompagnement stratégique et engagé pour le développement économique du territoire.",
         "contact-title": "NOUS<br>CONTACTER"
     },
     en: {
@@ -173,7 +192,6 @@ const translations = {
         "role1": "Investment & Strategy",
         "role2": "Land & Energy",
         "partners": "TERRITORIAL PARTNERS",
-        "cci-desc": "Strategic and committed support for the economic development of the territory.",
         "contact-title": "CONTACT<br>US"
     }
 };
@@ -184,35 +202,18 @@ const btnEn = document.getElementById('btn-en');
 
 function setLanguage(lang) {
     currentLang = lang;
-    
-    // Update buttons
-    if(lang === 'fr') {
-        btnFr.classList.add('active');
-        btnEn.classList.remove('active');
-    } else {
-        btnEn.classList.add('active');
-        btnFr.classList.remove('active');
-    }
-
-    // Update Text Content
+    if(lang === 'fr') { btnFr.classList.add('active'); btnEn.classList.remove('active'); } 
+    else { btnEn.classList.add('active'); btnFr.classList.remove('active'); }
     document.querySelectorAll('[data-lang]').forEach(el => {
         const key = el.getAttribute('data-lang');
-        if(translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
-        }
+        if(translations[lang][key]) el.innerHTML = translations[lang][key];
     });
-
-    // Re-run SplitType for animations if needed (optional optimization)
 }
-
 btnFr.addEventListener('click', () => setLanguage('fr'));
 btnEn.addEventListener('click', () => setLanguage('en'));
 
 // --- FORCER LA LECTURE VIDÉO ---
 window.addEventListener('load', () => {
     const video = document.getElementById('heroVideo');
-    if (video) {
-        video.muted = true; 
-        video.play().catch(error => { console.log("Autoplay blocked"); });
-    }
+    if (video) { video.muted = true; video.play().catch(error => { console.log("Autoplay blocked"); }); }
 });
