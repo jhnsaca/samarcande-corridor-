@@ -104,20 +104,126 @@ ul { list-style: none; }
 .quote-block { margin-top: 80px; border-left: 2px solid var(--accent-color); padding-left: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
 blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); opacity: 0.9; }
 
-/* --- ROADMAP (NEW) --- */
-.roadmap-section { padding: 100px 50px; background: var(--bg-gradient-secondary); }
-.roadmap-header { text-align: center; margin-bottom: 80px; }
-.roadmap-header h3 { font-family: var(--font-display); font-size: 3rem; color: #fff; }
-.roadmap-visual { display: flex; justify-content: center; align-items: center; padding: 50px 0; }
-.map-line-container { display: flex; align-items: center; gap: 0; position: relative; }
-.map-point { display: flex; flex-direction: column; align-items: center; gap: 15px; position: relative; z-index: 2; }
-.dot { width: 15px; height: 15px; background: var(--accent-color); border-radius: 50%; box-shadow: 0 0 20px var(--accent-color); }
-.label { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.1em; color: #fff; margin-top: 10px; }
-.map-line { width: 150px; height: 2px; background: rgba(255,255,255,0.1); position: relative; }
-.map-line::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent-color); transition: width 1s ease; }
-.pulse { animation: pulse 2s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 176, 133, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(196, 176, 133, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 176, 133, 0); } }
+/* --- ROADMAP SPECTACULAR --- */
+.roadmap-section { 
+    position: relative; 
+    background: #020b10; /* Fond très sombre, presque noir */
+    padding: 0; 
+    height: 200vh; /* Très haut pour permettre un long scroll */
+    overflow: hidden;
+}
 
+.roadmap-container {
+    width: 100%;
+    height: 100vh;
+    position: sticky; /* Le contenu reste fixe pendant qu'on scrolle */
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roadmap-header-fixed {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    z-index: 10;
+}
+
+.roadmap-header-fixed h3 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: #fff;
+    line-height: 0.9;
+    margin-top: 10px;
+    opacity: 0.2; /* Discret au début, s'allume via JS */
+    transition: opacity 0.5s;
+}
+
+.map-wrapper {
+    width: 100%;
+    height: 90%;
+    max-width: 800px;
+    position: relative;
+}
+
+.corridor-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Styles SVG */
+.path-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 2;
+}
+
+.path-active {
+    fill: none;
+    stroke: url(#gold-gradient);
+    stroke-width: 4;
+    stroke-linecap: round;
+    filter: url(#glow);
+    /* L'animation se fait via stroke-dasharray en JS */
+}
+
+.city-dot {
+    fill: #000;
+    stroke: var(--accent-color);
+    stroke-width: 2;
+}
+
+.city-dot-pulse {
+    fill: var(--accent-color);
+    opacity: 0;
+    transform-origin: center;
+}
+
+.city-label {
+    font-family: var(--font-display);
+    font-size: 24px;
+    fill: #fff;
+    opacity: 0; /* Caché par défaut */
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.city-data {
+    font-family: var(--font-body);
+    font-size: 12px;
+    fill: var(--accent-color);
+    opacity: 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.text-right { text-anchor: end; }
+
+.burst-line {
+    stroke: var(--accent-color);
+    stroke-width: 2;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200; /* Caché */
+    opacity: 0.5;
+}
+
+.europe-label {
+    font-family: var(--font-display);
+    font-size: 18px;
+    fill: #fff;
+    opacity: 0;
+    letter-spacing: 0.3em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .roadmap-header-fixed { top: 5%; left: 5%; }
+    .roadmap-header-fixed h3 { font-size: 2.5rem; }
+    .city-label { font-size: 18px; }
+    .city-data { font-size: 10px; }
+}
 /* --- HORIZONTAL SCROLL (100vw) --- */
 .horizontal-section { width: 100%; height: 100vh; overflow: hidden; background: #000; position: relative; }
 .horizontal-wrapper { display: flex; width: 300%; height: 100%; flex-wrap: nowrap; }
