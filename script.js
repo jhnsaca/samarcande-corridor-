@@ -52,37 +52,63 @@ gsap.from(text.chars, {
     opacity: 0.1, stagger: 0.1, color: '#001F2B'
 });
 
-// 5. ROADMAP ANIMATION (NEW)
-const lines = document.querySelectorAll('.map-line');
-lines.forEach((line, index) => {
-    gsap.to(line, {
-        scrollTrigger: {
-            trigger: '.roadmap-section',
-            start: 'top 60%',
-            end: 'bottom 60%',
-            scrub: 1
-        },
-        '--line-progress': '100%', // On utilisera une variable CSS ou width direct
-        onUpdate: function() {
-            // Hack pour animer le pseudo-element via CSS variable ou direct style
-            line.style.setProperty('--w', this.progress() * 100 + '%');
-            // Pour mobile (height) vs desktop (width)
-            if(window.innerWidth > 768) {
-                line.querySelector('::after').style.width = this.progress() * 100 + '%';
-            } else {
-                line.querySelector('::after').style.height = this.progress() * 100 + '%';
+// 5. ROADMAP SPECTACULAR ANIMATION
+// préparation chemin SVG
+const path = document.querySelector('.path-active');
+const pathLength = path.getTotalLength();
+
+// cache le chemin initialement
+path.style.strokeDasharray = pathLength;
+path.style.strokeDashoffset = pathLength;
+
+// Timeline principale liée au scroll
+let tlRoadmap = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".roadmap-section",
+        start: "top top", 
+        end: "+=200%",    
+        scrub: 1,         
+        pin: true,        
+        onUpdate: (self) => {
+            // allume le titre quand on commence à scroller
+            if(self.progress > 0.1) {
+                gsap.to('.roadmap-header-fixed h3', { opacity: 1, duration: 0.5 });
             }
         }
-    });
+    }
 });
-// Animation simplifiée pour les lignes
+
+// ÉTAPE 1 : Dessiner la ligne de Marseille à Paris
+tlRoadmap.to(path, {
+    strokeDashoffset: 0,
+    ease: "none",
+    duration: 3
+});
+
+// ÉTAPE 2 : Faire apparaître les villes au bon moment
+// Marseille (Dès le début)
+tlRoadmap.to('#city-marseille .city-label, #city-marseille .city-data', { opacity: 1, duration: 0.5 }, 0.1);
+tlRoadmap.fromTo('#city-marseille .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 0);
+
+// Lyon (Au milieu du tracé)
+tlRoadmap.to('#city-lyon .city-label, #city-lyon .city-data', { opacity: 1, duration: 0.5 }, 1.5);
+tlRoadmap.fromTo('#city-lyon .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 1.5);
+
+// Paris (À la fin du tracé)
+tlRoadmap.to('#city-paris .city-label, #city-paris .city-data', { opacity: 1, duration: 0.5 }, 2.8);
+tlRoadmap.fromTo('#city-paris .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 2.8);
+
+// ÉTAPE 3 : Explosion vers l'Europe (Fin)
+tlRoadmap.to('.burst-line', { strokeDashoffset: 0, duration: 1, stagger: 0.1 }, 3);
+tlRoadmap.to('.europe-label', { opacity: 1, y: -10, duration: 1 }, 3.2);
+
 gsap.utils.toArray('.map-line').forEach(line => {
     gsap.to(line, {
         scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%', end: 'bottom 70%', scrub: true },
         width: '100%' // Fallback simple
     });
 });
-// Note: Le CSS gère l'animation via ::after width transition, ici on déclenche juste l'apparition des points
+// Note: Le CSS gère l'animation via ::after width transition
 gsap.from('.map-point', {
     scrollTrigger: { trigger: '.roadmap-section', start: 'top 70%' },
     opacity: 0, y: 20, stagger: 0.3, duration: 0.8
