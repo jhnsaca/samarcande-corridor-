@@ -65,7 +65,7 @@ let tlRoadmap = gsap.timeline({
     scrollTrigger: {
         trigger: ".roadmap-section",
         start: "top top",
-        end: "+=150%", // AJUSTÉ : Plus court pour réduire l'espace
+        end: "+=149%", // AJUSTÉ : Plus court pour réduire l'espace
         scrub: 1,
         pin: true,
     }
