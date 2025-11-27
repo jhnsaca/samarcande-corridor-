@@ -104,130 +104,99 @@ ul { list-style: none; }
 .quote-block { margin-top: 80px; border-left: 2px solid var(--accent-color); padding-left: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
 blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); opacity: 0.9; }
 
-/* --- ROADMAP SPECTACULAR --- */
+/* --- ROADMAP SPECTACULAR (LIVING) --- */
 .roadmap-section { 
     position: relative; 
     background: #020b10; 
     padding: 0; 
-    /* RÉDUIT : De 200vh à 150vh pour moins d'espace vide */
     height: 150vh; 
     overflow: hidden;
-    /* IMPORTANT : Pas de padding en bas pour coller à la section suivante */
     padding-bottom: 0;
 }
 
+/* Texture de fond (Grain subtil) */
+.roadmap-bg-texture {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
 .roadmap-container {
-    width: 100%;
-    height: 100vh;
-    position: sticky; 
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* On descend légèrement le conteneur pour que Marseille soit bien en bas */
+    width: 100%; height: 100vh;
+    position: sticky; top: 0;
+    display: flex; justify-content: center; align-items: center;
     padding-top: 50px; 
+    z-index: 1;
 }
 
-.roadmap-header-fixed {
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    z-index: 10;
-}
-
+.roadmap-header-fixed { position: absolute; top: 15%; left: 10%; z-index: 10; }
 .roadmap-header-fixed h3 {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    color: #fff;
-    line-height: 0.9;
-    margin-top: 10px;
-    opacity: 0.2; /* Discret au début, s'allume via JS */
-    transition: opacity 0.5s;
+    font-family: var(--font-display); font-size: 4rem; color: #fff; line-height: 0.9; margin-top: 10px;
+    opacity: 0.2; transition: opacity 0.5s;
 }
 
-.map-wrapper {
-    width: 100%;
-    height: 90%;
-    max-width: 800px;
-    position: relative;
-}
+.map-wrapper { width: 100%; height: 90%; max-width: 800px; position: relative; }
+.corridor-svg { width: 100%; height: 100%; overflow: visible; }
 
-.corridor-svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-/* Styles SVG */
-.path-bg {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.05);
-    stroke-width: 2;
-}
+/* Lignes */
+.path-bg { fill: none; stroke: rgba(255, 255, 255, 0.03); stroke-width: 2; }
 
 .path-active {
-    fill: none;
-    stroke: url(#gold-gradient);
-    stroke-width: 4;
-    stroke-linecap: round;
+    fill: none; stroke: url(#gold-gradient); stroke-width: 4; stroke-linecap: round;
     filter: url(#glow);
-    /* L'animation se fait via stroke-dasharray en JS */
 }
 
-.city-dot {
-    fill: #000;
-    stroke: var(--accent-color);
+/* LA TOUCHE MAGIQUE : Le Flux d'Énergie */
+.path-flow {
+    fill: none;
+    stroke: #fff;
     stroke-width: 2;
+    stroke-dasharray: 10, 30; /* Tirets espacés */
+    stroke-opacity: 0.6;
+    animation: flowAnimation 1s linear infinite; /* Ça bouge tout le temps */
+    /* Masqué par défaut, révélé par le JS en même temps que la ligne active */
+    clip-path: url(#clip-path-dynamic); /* Sera géré par JS si besoin, ou simple opacité */
+    opacity: 0; /* Révélé par JS */
 }
 
-.city-dot-pulse {
-    fill: var(--accent-color);
+@keyframes flowAnimation {
+    to { stroke-dashoffset: -40; }
+}
+
+/* Villes & Radar */
+.city-dot { fill: #000; stroke: var(--accent-color); stroke-width: 2; }
+.city-dot-pulse { fill: var(--accent-color); opacity: 0; transform-origin: center; }
+
+.city-radar {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 1;
     opacity: 0;
     transform-origin: center;
+    animation: radarPing 3s infinite;
 }
 
-.city-label {
-    font-family: var(--font-display);
-    font-size: 24px;
-    fill: #fff;
-    opacity: 0; /* Caché par défaut */
-    font-weight: bold;
-    letter-spacing: 0.1em;
+@keyframes radarPing {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { transform: scale(2); opacity: 0; }
 }
 
-.city-data {
-    font-family: var(--font-body);
-    font-size: 12px;
-    fill: var(--accent-color);
-    opacity: 0;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-}
-
+.city-label { font-family: var(--font-display); font-size: 24px; fill: #fff; opacity: 0; font-weight: bold; letter-spacing: 0.1em; }
+.city-data { font-family: var(--font-body); font-size: 12px; fill: var(--accent-color); opacity: 0; letter-spacing: 0.2em; text-transform: uppercase; }
 .text-right { text-anchor: end; }
 
-.burst-line {
-    stroke: var(--accent-color);
-    stroke-width: 2;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200; /* Caché */
-    opacity: 0.5;
-}
+.burst-line { stroke: var(--accent-color); stroke-width: 2; stroke-dasharray: 200; stroke-dashoffset: 200; opacity: 0.5; }
+.europe-label { font-family: var(--font-display); font-size: 18px; fill: #fff; opacity: 0; letter-spacing: 0.3em; }
 
-.europe-label {
-    font-family: var(--font-display);
-    font-size: 18px;
-    fill: #fff;
-    opacity: 0;
-    letter-spacing: 0.3em;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
     .roadmap-header-fixed { top: 5%; left: 5%; }
     .roadmap-header-fixed h3 { font-size: 2.5rem; }
     .city-label { font-size: 18px; }
     .city-data { font-size: 10px; }
+}
 }
 /* --- HORIZONTAL SCROLL (100vw) --- */
 .horizontal-section { width: 100%; height: 100vh; overflow: hidden; background: #000; position: relative; }
