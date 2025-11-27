@@ -106,60 +106,80 @@
             </div>
         </section>
 
-      <!-- SECTION ROADMAP : THE GOLDEN VEIN -->
+      <!-- SECTION ROADMAP : THE LIVING VEIN -->
 <section id="roadmap" class="roadmap-section" data-scroll-section>
+    <!-- Fond Topographique Subtil -->
+    <div class="roadmap-bg-texture"></div>
+    
     <div class="roadmap-container">
         
-        <!-- Titre Fixe -->
         <div class="roadmap-header-fixed">
             <span class="section-label" data-lang="road-label">TRAJECTOIRE STRATÉGIQUE</span>
             <h3 data-lang="road-title">L'AXE<br>VITAL</h3>
         </div>
 
-        <!-- Le Visuel SVG -->
         <div class="map-wrapper">
             <svg class="corridor-svg" viewBox="0 0 600 1000" preserveAspectRatio="xMidYMid meet">
                 <defs>
+                    <!-- Dégradé Or -->
                     <linearGradient id="gold-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" style="stop-color:#C4B085;stop-opacity:0" />
+                        <stop offset="0%" style="stop-color:#C4B085;stop-opacity:0.2" />
                         <stop offset="50%" style="stop-color:#C4B085;stop-opacity:1" />
                         <stop offset="100%" style="stop-color:#fff;stop-opacity:1" />
                     </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    
+                    <!-- Glow Intense -->
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
                     </filter>
+
+                    <!-- Motif Grille Topographique (Le détail technique) -->
+                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                    </pattern>
                 </defs>
 
-                <!-- J'ai descendu le point de départ à 950 (au lieu de 900) pour réduire l'espace avec la section suivante -->
+                <!-- Fond Grille -->
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+
+                <!-- 1. Ligne Fantôme (Le tracé vide) -->
                 <path class="path-bg" d="M300,950 C300,950 350,600 300,500 C250,400 300,100 300,100" />
+                
+                <!-- 2. Ligne Principale (Celle qui se dessine) -->
                 <path class="path-active" d="M300,950 C300,950 350,600 300,500 C250,400 300,100 300,100" />
 
-                <!-- MARSEILLE (Descendu à 950) -->
+                <!-- 3. LE FLUX D'ÉNERGIE (La touche magique : des tirets qui bougent) -->
+                <path class="path-flow" d="M300,950 C300,950 350,600 300,500 C250,400 300,100 300,100" />
+
+                <!-- VILLES -->
                 <g class="city-group" id="city-marseille" transform="translate(300, 950)">
-                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-radar" r="40" /> <!-- Onde Radar -->
+                    <circle class="city-dot-pulse" r="15" />
                     <circle class="city-dot" r="6" />
                     <text x="40" y="5" class="city-label">MARSEILLE</text>
                     <text x="40" y="25" class="city-data" data-lang="data-marseille">HUB SUD • GATEWAY</text>
                 </g>
 
-                <!-- LYON -->
                 <g class="city-group" id="city-lyon" transform="translate(300, 500)">
-                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-radar" r="40" />
+                    <circle class="city-dot-pulse" r="15" />
                     <circle class="city-dot" r="6" />
                     <text x="-120" y="5" class="city-label text-right">LYON</text>
                     <text x="-120" y="25" class="city-data text-right" data-lang="data-lyon">TRANSFORMATION • IND.</text>
                 </g>
 
-                <!-- PARIS -->
                 <g class="city-group" id="city-paris" transform="translate(300, 100)">
-                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-radar" r="40" />
+                    <circle class="city-dot-pulse" r="15" />
                     <circle class="city-dot" r="6" />
                     <text x="40" y="5" class="city-label">PARIS</text>
                     <text x="40" y="25" class="city-data" data-lang="data-paris">CONNEXION • NORD</text>
                 </g>
                 
-                <!-- EUROPE -->
                 <g class="europe-burst" transform="translate(300, 50)">
                     <line x1="0" y1="0" x2="-100" y2="-100" class="burst-line" />
                     <line x1="0" y1="0" x2="0" y2="-150" class="burst-line" />
