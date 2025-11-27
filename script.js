@@ -201,6 +201,16 @@ if (menuBtn) {
 const translations = {
     fr: {
         "menu": "MENU",
+        
+        // SIDEBAR MENU (NOUVEAU)
+        "nav-home": "Accueil",
+        "nav-roadmap": "Roadmap",
+        "nav-corridor": "Le Corridor",
+        "nav-arch": "Architecture",
+        "nav-decarb": "Décarbonation",
+        "nav-partners": "Partenaires",
+        "nav-contact": "Contact",
+
         "hero-loc": "MARSEILLE • LYON • PARIS",
         "explore": "EXPLORER",
         "hero-desc": "Relier les territoires.<br>Valoriser Marseille Méditerranée.",
@@ -244,6 +254,16 @@ const translations = {
     },
     en: {
         "menu": "MENU",
+        
+        // SIDEBAR MENU (NEW)
+        "nav-home": "Home",
+        "nav-roadmap": "Roadmap",
+        "nav-corridor": "The Corridor",
+        "nav-arch": "Architecture",
+        "nav-decarb": "Decarbonization",
+        "nav-partners": "Partners",
+        "nav-contact": "Contact",
+
         "hero-loc": "MARSEILLE • LYON • PARIS",
         "explore": "EXPLORE",
         "hero-desc": "Connecting territories.<br>Enhancing Marseille Mediterranean.",
