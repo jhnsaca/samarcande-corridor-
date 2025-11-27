@@ -29,21 +29,49 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 3. LOADER CINÉMATIQUE
-const tlLoader = gsap.timeline();
-tlLoader
-    .to('.loader-progress', {
-        width: '100%', duration: 1.5, ease: 'power2.inOut',
-        onUpdate: function() {
-            const progress = Math.round(this.progress() * 100);
-            const counter = document.querySelector('.loader-counter');
-            if(counter) counter.textContent = progress + '%';
-        }
-    })
-    .to('.loader', { y: '-100%', duration: 1, ease: 'power4.inOut', delay: 0.2 })
-    .from('.hero-video', { scale: 1.3, duration: 1.5, ease: 'power2.out' }, "-=0.8")
-    .to('.anim-title, .hero-label .anim-text', { y: 0, duration: 1, stagger: 0.1, ease: 'power3.out' }, "-=0.5")
-    .to('.hero-desc.anim-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8");
+// 3. LOADER CINÉMATIQUE (Version Sécurisée)
+// On attend que le HTML soit chargé
+document.addEventListener("DOMContentLoaded", (event) => {
+    
+    const tlLoader = gsap.timeline();
+
+    tlLoader
+        .to('.loader-progress', {
+            width: '100%',
+            duration: 2, // Durée du chargement (2 secondes)
+            ease: 'power2.inOut',
+            onUpdate: function() {
+                // Mise à jour du pourcentage
+                const progress = Math.round(this.progress() * 100);
+                const counter = document.querySelector('.loader-counter');
+                if(counter) counter.textContent = progress + '%';
+            }
+        })
+        .to('.loader', {
+            y: '-100%', // Le rideau se lève
+            duration: 1,
+            ease: 'power4.inOut',
+            delay: 0.2
+        })
+        .from('.hero-video', {
+            scale: 1.3,
+            duration: 1.5,
+            ease: 'power2.out'
+        }, "-=0.8")
+        .to('.anim-title, .hero-label .anim-text', {
+            y: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: 'power3.out'
+        }, "-=0.5")
+        .to('.hero-desc.anim-text', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out'
+        }, "-=0.8");
+        
+});
 
 // 4. TEXT REVEAL (VOCATION)
 const text = new SplitType('#manifesto-text', { types: 'words, chars' });
