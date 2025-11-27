@@ -61,14 +61,15 @@ const pathLength = path.getTotalLength();
 path.style.strokeDasharray = pathLength;
 path.style.strokeDashoffset = pathLength;
 
-// Timeline principale liée au scroll
 let tlRoadmap = gsap.timeline({
     scrollTrigger: {
         trigger: ".roadmap-section",
-        start: "top top", 
-        end: "+=200%",    
-        scrub: 1,         
-        pin: true,        
+        start: "top top",
+        end: "+=150%", // AJUSTÉ : Plus court pour réduire l'espace
+        scrub: 1,
+        pin: true,
+    }
+});      
         onUpdate: (self) => {
             // allume le titre quand on commence à scroller
             if(self.progress > 0.1) {
@@ -170,7 +171,7 @@ menuBtn.addEventListener('click', toggleMenu);
 menuBackdrop.addEventListener('click', toggleMenu);
 navItems.forEach(item => { item.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); }); });
 
-// 10. GESTION DES LANGUES (FR/EN)
+// 10. GESTION DES LANGUES (FR/EN) - COMPLÈTE
 const translations = {
     fr: {
         "menu": "MENU",
@@ -180,16 +181,35 @@ const translations = {
         "vocation-label": "NOTRE VOCATION",
         "vocation-text": "Le Samarcande Corridor s’est donné comme ambition de relier <span class='highlight'>Marseille, Lyon et Paris</span>. Une vision nationale de la commercialité et de la circularité, tournée vers l'Europe et l'International.",
         "vocation-quote": "\"Au service de l’intelligence collective, du dialogue et de l’action avec les territoires.\"",
+        
+        // ROADMAP
+        "road-label": "TRAJECTOIRE STRATÉGIQUE",
+        "road-title": "L'AXE<br>VITAL",
+        "data-marseille": "HUB SUD • GATEWAY",
+        "data-lyon": "TRANSFORMATION • IND.",
+        "data-paris": "CONNEXION • NORD",
+        "data-europe": "EUROPE & INT.",
+
+        // PANELS
         "panel1": "Porte d'entrée des flux mondiaux. L'interface stratégique entre la mer et le continent.",
         "panel2": "Le poumon industriel. Un hub de transformation et de redistribution au cœur de l'axe rhodanien.",
         "panel3": "Le centre de consommation connecté. Le point d'ancrage vers les marchés du Nord et l'international.",
+        
         "arch-label": "DESIGN & MATIÈRE",
         "arch-title": "L'EAU ET LA LUMIÈRE",
         "arch-text": "Des architectures dont le design est inspiré par la Méditerranée. Nous concevons des bâtiments en béton durables, qui s'intègrent harmonieusement dans leur environnement.",
+        
         "enr-title": "UNE LOGISTIQUE AU SERVICE<br>DU CLIMAT",
         "enr-text": "Décarbonation massive, production photovoltaïque et multimodalité.",
         "enr-stat1": "Énergies Renouvelables",
         "enr-stat2": "Neutralité Carbone",
+        
+        // CCI
+        "cci-label": "PARTENAIRE FONDATEUR",
+        "cci-title": "CCI LYON MÉTROPOLE",
+        "cci-text": "Acteur majeur du Corridor, la CCI Lyon Métropole s'engage pour la décarbonation et la conquête de nouveaux marchés. Un projet d'ambition qui renforce la souveraineté industrielle et valorise nos territoires.",
+        "cci-logo": "CCI LYON MÉTROPOLE",
+
         "founders": "FONDATEURS",
         "role1": "Investissement & Stratégie",
         "role2": "Foncier & Énergie",
@@ -204,16 +224,35 @@ const translations = {
         "vocation-label": "OUR VOCATION",
         "vocation-text": "Samarcande Corridor aims to connect <span class='highlight'>Marseille, Lyon and Paris</span>. A national vision of commerciality and circularity, facing Europe and the World.",
         "vocation-quote": "\"Serving collective intelligence, dialogue, and action with territories.\"",
+        
+        // ROADMAP
+        "road-label": "STRATEGIC TRAJECTORY",
+        "road-title": "THE VITAL<br>AXIS",
+        "data-marseille": "SOUTH HUB • GATEWAY",
+        "data-lyon": "TRANSFORMATION • IND.",
+        "data-paris": "CONNECTION • NORTH",
+        "data-europe": "EUROPE & INT.",
+
+        // PANELS
         "panel1": "Gateway to global flows. The strategic interface between the sea and the continent.",
         "panel2": "The industrial lung. A hub of transformation and redistribution at the heart of the Rhone axis.",
         "panel3": "The connected consumption center. The anchor point to Northern markets and international trade.",
+        
         "arch-label": "DESIGN & MATTER",
         "arch-title": "WATER AND LIGHT",
         "arch-text": "Architectures inspired by the Mediterranean. We design sustainable concrete buildings that blend harmoniously into their environment.",
+        
         "enr-title": "LOGISTICS SERVING<br>THE CLIMATE",
         "enr-text": "Massive decarbonization, photovoltaic production, and multimodality.",
         "enr-stat1": "Renewable Energies",
         "enr-stat2": "Carbon Neutrality",
+        
+        // CCI
+        "cci-label": "FOUNDING PARTNER",
+        "cci-title": "CCI LYON METROPOLE",
+        "cci-text": "A major player in the Corridor, CCI Lyon Metropole is committed to decarbonization and conquering new markets. An ambitious project that strengthens industrial sovereignty and enhances our territories.",
+        "cci-logo": "CCI LYON METROPOLE",
+
         "founders": "FOUNDERS",
         "role1": "Investment & Strategy",
         "role2": "Land & Energy",
