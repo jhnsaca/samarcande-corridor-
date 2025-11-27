@@ -106,20 +106,19 @@
             </div>
         </section>
 
-       <!-- SECTION ROADMAP : THE GOLDEN VEIN -->
+      <!-- SECTION ROADMAP : THE GOLDEN VEIN -->
 <section id="roadmap" class="roadmap-section" data-scroll-section>
     <div class="roadmap-container">
         
-        <!-- Titre Fixe (Sticky) -->
+        <!-- Titre Fixe -->
         <div class="roadmap-header-fixed">
-            <span class="section-label">TRAJECTOIRE STRATÉGIQUE</span>
-            <h3>L'AXE<br>VITAL</h3>
+            <span class="section-label" data-lang="road-label">TRAJECTOIRE STRATÉGIQUE</span>
+            <h3 data-lang="road-title">L'AXE<br>VITAL</h3>
         </div>
 
-        <!-- Le Visuel SVG (La Carte Abstraite) -->
+        <!-- Le Visuel SVG -->
         <div class="map-wrapper">
             <svg class="corridor-svg" viewBox="0 0 600 1000" preserveAspectRatio="xMidYMid meet">
-                <!-- Définition des dégradés -->
                 <defs>
                     <linearGradient id="gold-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
                         <stop offset="0%" style="stop-color:#C4B085;stop-opacity:0" />
@@ -128,51 +127,44 @@
                     </linearGradient>
                     <filter id="glow">
                         <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
+                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                 </defs>
 
-                <!-- Ligne de fond (grise) -->
-                <path class="path-bg" d="M300,900 C300,900 350,600 300,500 C250,400 300,100 300,100" />
-                
-                <!-- Ligne active (Or qui se dessine) -->
-                <path class="path-active" d="M300,900 C300,900 350,600 300,500 C250,400 300,100 300,100" />
+                <!-- J'ai descendu le point de départ à 950 (au lieu de 900) pour réduire l'espace avec la section suivante -->
+                <path class="path-bg" d="M300,950 C300,950 350,600 300,500 C250,400 300,100 300,100" />
+                <path class="path-active" d="M300,950 C300,950 350,600 300,500 C250,400 300,100 300,100" />
 
-                <!-- Points Villes (Groupes) -->
-                
-                <!-- MARSEILLE (Bas) -->
-                <g class="city-group" id="city-marseille" transform="translate(300, 900)">
+                <!-- MARSEILLE (Descendu à 950) -->
+                <g class="city-group" id="city-marseille" transform="translate(300, 950)">
                     <circle class="city-dot-pulse" r="20" />
                     <circle class="city-dot" r="6" />
                     <text x="40" y="5" class="city-label">MARSEILLE</text>
-                    <text x="40" y="25" class="city-data">HUB SUD • GATEWAY</text>
+                    <text x="40" y="25" class="city-data" data-lang="data-marseille">HUB SUD • GATEWAY</text>
                 </g>
 
-                <!-- LYON (Milieu) -->
+                <!-- LYON -->
                 <g class="city-group" id="city-lyon" transform="translate(300, 500)">
                     <circle class="city-dot-pulse" r="20" />
                     <circle class="city-dot" r="6" />
                     <text x="-120" y="5" class="city-label text-right">LYON</text>
-                    <text x="-120" y="25" class="city-data text-right">TRANSFORMATION • IND.</text>
+                    <text x="-120" y="25" class="city-data text-right" data-lang="data-lyon">TRANSFORMATION • IND.</text>
                 </g>
 
-                <!-- PARIS (Haut) -->
+                <!-- PARIS -->
                 <g class="city-group" id="city-paris" transform="translate(300, 100)">
                     <circle class="city-dot-pulse" r="20" />
                     <circle class="city-dot" r="6" />
                     <text x="40" y="5" class="city-label">PARIS</text>
-                    <text x="40" y="25" class="city-data">CONNEXION • NORD</text>
+                    <text x="40" y="25" class="city-data" data-lang="data-paris">CONNEXION • NORD</text>
                 </g>
                 
-                <!-- EUROPE (Explosion finale) -->
+                <!-- EUROPE -->
                 <g class="europe-burst" transform="translate(300, 50)">
                     <line x1="0" y1="0" x2="-100" y2="-100" class="burst-line" />
                     <line x1="0" y1="0" x2="0" y2="-150" class="burst-line" />
                     <line x1="0" y1="0" x2="100" y2="-100" class="burst-line" />
-                    <text x="0" y="-170" text-anchor="middle" class="europe-label">EUROPE & INT.</text>
+                    <text x="0" y="-170" text-anchor="middle" class="europe-label" data-lang="data-europe">EUROPE & INT.</text>
                 </g>
             </svg>
         </div>
@@ -252,20 +244,20 @@
             </div>
         </section>
 
-        <!-- SECTION SPÉCIALE : CCI LYON (Bandeau Full Width) -->
-        <section id="cci-focus" class="cci-section" data-scroll-section>
-            <div class="container">
-                <div class="cci-content reveal-up">
-                    <span class="cci-label">PARTENAIRE FONDATEUR</span>
-                    <h3>CCI LYON MÉTROPOLE</h3>
-                    <p class="cci-desc">
-                        Acteur majeur du Corridor, la CCI Lyon Métropole s'engage pour la décarbonation et la conquête de nouveaux marchés. 
-                        Un projet d'ambition qui renforce la souveraineté industrielle et valorise nos territoires.
-                    </p>
-                    <div class="cci-logo-large">CCI LYON MÉTROPOLE</div>
-                </div>
-            </div>
-        </section>
+       <!-- SECTION SPÉCIALE : CCI LYON -->
+<section id="cci-focus" class="cci-section" data-scroll-section>
+    <div class="container">
+        <div class="cci-content reveal-up">
+            <span class="cci-label" data-lang="cci-label">PARTENAIRE FONDATEUR</span>
+            <h3 data-lang="cci-title">CCI LYON MÉTROPOLE</h3>
+            <p class="cci-desc" data-lang="cci-text">
+                Acteur majeur du Corridor, la CCI Lyon Métropole s'engage pour la décarbonation et la conquête de nouveaux marchés. 
+                Un projet d'ambition qui renforce la souveraineté industrielle et valorise nos territoires.
+            </p>
+            <div class="cci-logo-large" data-lang="cci-logo">CCI LYON MÉTROPOLE</div>
+        </div>
+    </div>
+</section>
 
         <!-- SECTION 5: AUTRES PARTENAIRES -->
         <section id="partenaires" class="partners-section" data-scroll-section>
