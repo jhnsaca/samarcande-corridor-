@@ -82,14 +82,19 @@ if (typeof SplitType !== 'undefined') {
 
 // 5. ROADMAP SPECTACULAR ANIMATION
 const path = document.querySelector('.path-active');
+const pathFlow = document.querySelector('.path-flow'); // Nouvelle ligne
 
-// Sécurité : on ne lance l'animation que si le SVG existe
-if (path) {
+if (path && pathFlow) {
     const pathLength = path.getTotalLength();
 
-    // Cache le chemin initialement
+    // Cache les chemins initialement
     path.style.strokeDasharray = pathLength;
     path.style.strokeDashoffset = pathLength;
+    
+    // Le flux suit la même logique
+    pathFlow.style.strokeDasharray = pathLength; // On utilise la longueur totale pour le masque
+    pathFlow.style.strokeDashoffset = pathLength;
+    pathFlow.style.opacity = 0.5; // On le rend visible mais caché par le dashoffset
 
     let tlRoadmap = gsap.timeline({
         scrollTrigger: {
@@ -99,7 +104,6 @@ if (path) {
             scrub: 1,
             pin: true,
             onUpdate: (self) => {
-                // Allume le titre quand on commence à scroller
                 if(self.progress > 0.1) {
                     gsap.to('.roadmap-header-fixed h3', { opacity: 1, duration: 0.5 });
                 }
@@ -107,27 +111,29 @@ if (path) {
         }
     });
 
-    // ÉTAPE 1 : Dessiner la ligne
-    tlRoadmap.to(path, {
+    // ÉTAPE 1 : Dessiner la ligne ET le flux en même temps
+    tlRoadmap.to([path, pathFlow], {
         strokeDashoffset: 0,
         ease: "none",
         duration: 3
     });
 
-    // ÉTAPE 2 : Faire apparaître les villes
-    // Marseille
+    // ÉTAPE 2 : Villes (Marseille)
     tlRoadmap.to('#city-marseille .city-label, #city-marseille .city-data', { opacity: 1, duration: 0.5 }, 0.1);
+    tlRoadmap.to('#city-marseille .city-radar', { opacity: 1, duration: 0.5 }, 0.1); // Radar s'active
     tlRoadmap.fromTo('#city-marseille .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 0);
 
     // Lyon
     tlRoadmap.to('#city-lyon .city-label, #city-lyon .city-data', { opacity: 1, duration: 0.5 }, 1.5);
+    tlRoadmap.to('#city-lyon .city-radar', { opacity: 1, duration: 0.5 }, 1.5);
     tlRoadmap.fromTo('#city-lyon .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 1.5);
 
     // Paris
     tlRoadmap.to('#city-paris .city-label, #city-paris .city-data', { opacity: 1, duration: 0.5 }, 2.8);
+    tlRoadmap.to('#city-paris .city-radar', { opacity: 1, duration: 0.5 }, 2.8);
     tlRoadmap.fromTo('#city-paris .city-dot-pulse', { scale: 0, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 1, repeat: 5 }, 2.8);
 
-    // ÉTAPE 3 : Explosion vers l'Europe
+    // ÉTAPE 3 : Explosion
     tlRoadmap.to('.burst-line', { strokeDashoffset: 0, duration: 1, stagger: 0.1 }, 3);
     tlRoadmap.to('.europe-label', { opacity: 1, y: -10, duration: 1 }, 3.2);
 }
