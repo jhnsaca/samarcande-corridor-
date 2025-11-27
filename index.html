@@ -106,40 +106,78 @@
             </div>
         </section>
 
-        <!-- NOUVELLE SECTION : ROADMAP STRATÉGIQUE (Clarification) -->
-        <section id="roadmap" class="roadmap-section" data-scroll-section>
-            <div class="container">
-                <div class="roadmap-header reveal-up">
-                    <span class="section-label">LA TRAJECTOIRE</span>
-                    <h3>L'AXE VERTÉBRAL<br>DE L'EUROPE</h3>
-                </div>
+       <!-- SECTION ROADMAP : THE GOLDEN VEIN -->
+<section id="roadmap" class="roadmap-section" data-scroll-section>
+    <div class="roadmap-container">
+        
+        <!-- Titre Fixe (Sticky) -->
+        <div class="roadmap-header-fixed">
+            <span class="section-label">TRAJECTOIRE STRATÉGIQUE</span>
+            <h3>L'AXE<br>VITAL</h3>
+        </div>
+
+        <!-- Le Visuel SVG (La Carte Abstraite) -->
+        <div class="map-wrapper">
+            <svg class="corridor-svg" viewBox="0 0 600 1000" preserveAspectRatio="xMidYMid meet">
+                <!-- Définition des dégradés -->
+                <defs>
+                    <linearGradient id="gold-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" style="stop-color:#C4B085;stop-opacity:0" />
+                        <stop offset="50%" style="stop-color:#C4B085;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#fff;stop-opacity:1" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Ligne de fond (grise) -->
+                <path class="path-bg" d="M300,900 C300,900 350,600 300,500 C250,400 300,100 300,100" />
                 
-                <!-- Schéma SVG Animé -->
-                <div class="roadmap-visual">
-                    <div class="map-line-container">
-                        <div class="map-point p-marseille">
-                            <span class="dot"></span>
-                            <span class="label">MARSEILLE</span>
-                        </div>
-                        <div class="map-line l-1"></div>
-                        <div class="map-point p-lyon">
-                            <span class="dot"></span>
-                            <span class="label">LYON</span>
-                        </div>
-                        <div class="map-line l-2"></div>
-                        <div class="map-point p-paris">
-                            <span class="dot"></span>
-                            <span class="label">PARIS</span>
-                        </div>
-                        <div class="map-line l-3"></div>
-                        <div class="map-point p-europe">
-                            <span class="dot pulse"></span>
-                            <span class="label">EUROPE / INT.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <!-- Ligne active (Or qui se dessine) -->
+                <path class="path-active" d="M300,900 C300,900 350,600 300,500 C250,400 300,100 300,100" />
+
+                <!-- Points Villes (Groupes) -->
+                
+                <!-- MARSEILLE (Bas) -->
+                <g class="city-group" id="city-marseille" transform="translate(300, 900)">
+                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-dot" r="6" />
+                    <text x="40" y="5" class="city-label">MARSEILLE</text>
+                    <text x="40" y="25" class="city-data">HUB SUD • GATEWAY</text>
+                </g>
+
+                <!-- LYON (Milieu) -->
+                <g class="city-group" id="city-lyon" transform="translate(300, 500)">
+                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-dot" r="6" />
+                    <text x="-120" y="5" class="city-label text-right">LYON</text>
+                    <text x="-120" y="25" class="city-data text-right">TRANSFORMATION • IND.</text>
+                </g>
+
+                <!-- PARIS (Haut) -->
+                <g class="city-group" id="city-paris" transform="translate(300, 100)">
+                    <circle class="city-dot-pulse" r="20" />
+                    <circle class="city-dot" r="6" />
+                    <text x="40" y="5" class="city-label">PARIS</text>
+                    <text x="40" y="25" class="city-data">CONNEXION • NORD</text>
+                </g>
+                
+                <!-- EUROPE (Explosion finale) -->
+                <g class="europe-burst" transform="translate(300, 50)">
+                    <line x1="0" y1="0" x2="-100" y2="-100" class="burst-line" />
+                    <line x1="0" y1="0" x2="0" y2="-150" class="burst-line" />
+                    <line x1="0" y1="0" x2="100" y2="-100" class="burst-line" />
+                    <text x="0" y="-170" text-anchor="middle" class="europe-label">EUROPE & INT.</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+</section>
 
         <!-- SECTION 2: LE CORRIDOR (Scroll Horizontal Plein Écran) -->
         <section id="corridor" class="horizontal-section">
