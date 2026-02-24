@@ -201,23 +201,19 @@ if (menuBtn) {
 const translations = {
     fr: {
         "menu": "MENU",
-        
-        // SIDEBAR MENU (NOUVEAU)
-        "nav-home": "Accueil",
-        "nav-roadmap": "Roadmap",
-        "nav-corridor": "Le Corridor",
-        "nav-arch": "Architecture",
-        "nav-decarb": "Décarbonation",
-        "nav-partners": "Partenaires",
-        "nav-contact": "Contact",
-
         "hero-loc": "MARSEILLE • LYON • PARIS",
         "explore": "EXPLORER",
         "hero-desc": "Relier les territoires.<br>Valoriser Marseille Méditerranée.",
-        "vocation-label": "NOTRE VOCATION",
-        "vocation-text": "Le Samarcande Corridor s’est donné comme ambition de relier <span class='highlight'>Marseille, Lyon et Paris</span>. Une vision nationale de la commercialité et de la circularité, tournée vers l'Europe et l'International.",
-        "vocation-quote": "\"Au service de l’intelligence collective, du dialogue et de l’action avec les territoires.\"",
         
+        // VOCATION (Nouveau texte)
+        "vocation-label": "AMBITION GÉOSTRATÉGIQUE",
+        "vocation-text": "Le Samarcande Corridor structure un axe logistique majeur reliant <span class='highlight'>Marseille Méditerranée, Lyon, Paris vers Rotterdam</span> et l’international. Segment stratégique Français des nouvelles <span class='highlight'>Routes de la Soie</span>, il organise un flux d’échanges logistiques, commerciaux et multimodaux entre l’Asie, l’Europe et l’Indo-Pacifique.",
+        "vocation-quote": "\"Une vision globale tournée vers un Corridor d’affaires et de synergies industrielles, pensé pour connecter les nouveaux Hub logistiques et renforcer les territoires aux grandes dynamiques économiques mondiales.\"",
+        
+        // SAMARCANDE FOCUS (Nouveau)
+        "sc-label": "FONDATEUR & PILOTE",
+        "sc-text": "À l'origine du projet, Samarcande Capital est le moteur opérationnel du Corridor. Société d'investissement et Asset Manager, nous orchestrons la transformation du foncier et le déploiement des infrastructures énergétiques pour vitaliser l'axe.",
+
         // ROADMAP
         "road-label": "TRAJECTOIRE STRATÉGIQUE",
         "road-title": "L'AXE<br>VITAL",
@@ -250,27 +246,32 @@ const translations = {
         "role1": "Investissement & Stratégie",
         "role2": "Foncier & Énergie",
         "partners": "PARTENAIRES TERRITORIAUX",
-        "contact-title": "NOUS<br>CONTACTER"
+        "contact-title": "NOUS<br>CONTACTER",
+        
+        // SIDEBAR
+        "nav-home": "Accueil",
+        "nav-roadmap": "Roadmap",
+        "nav-corridor": "Le Corridor",
+        "nav-arch": "Architecture",
+        "nav-decarb": "Décarbonation",
+        "nav-partners": "Partenaires",
+        "nav-contact": "Contact"
     },
     en: {
         "menu": "MENU",
-        
-        // SIDEBAR MENU (NEW)
-        "nav-home": "Home",
-        "nav-roadmap": "Roadmap",
-        "nav-corridor": "The Corridor",
-        "nav-arch": "Architecture",
-        "nav-decarb": "Decarbonization",
-        "nav-partners": "Partners",
-        "nav-contact": "Contact",
-
         "hero-loc": "MARSEILLE • LYON • PARIS",
         "explore": "EXPLORE",
         "hero-desc": "Connecting territories.<br>Enhancing Marseille Mediterranean.",
-        "vocation-label": "OUR VOCATION",
-        "vocation-text": "Samarcande Corridor aims to connect <span class='highlight'>Marseille, Lyon and Paris</span>. A national vision of commerciality and circularity, facing Europe and the World.",
-        "vocation-quote": "\"Serving collective intelligence, dialogue, and action with territories.\"",
         
+        // VOCATION (New text translated)
+        "vocation-label": "GEOSTRATEGIC AMBITION",
+        "vocation-text": "The Samarcande Corridor structures a major logistics axis connecting <span class='highlight'>Marseille Mediterranean, Lyon, Paris towards Rotterdam</span> and the international scene. A strategic French segment of the new <span class='highlight'>Silk Roads</span>, it organizes a flow of logistical, commercial, and multimodal exchanges between Asia, Europe, and the Indo-Pacific.",
+        "vocation-quote": "\"A global vision turned towards a business 'Corridor' and industrial synergies, designed to connect new logistics hubs and strengthen territories within major global economic dynamics.\"",
+        
+        // SAMARCANDE FOCUS (New translated)
+        "sc-label": "FOUNDER & PILOT",
+        "sc-text": "At the origin of the project, Samarcande Capital is the operational engine of the Corridor. As an investment firm and Asset Manager, we orchestrate land transformation and the deployment of energy infrastructures to revitalize the axis.",
+
         // ROADMAP
         "road-label": "STRATEGIC TRAJECTORY",
         "road-title": "THE VITAL<br>AXIS",
@@ -303,7 +304,16 @@ const translations = {
         "role1": "Investment & Strategy",
         "role2": "Land & Energy",
         "partners": "TERRITORIAL PARTNERS",
-        "contact-title": "CONTACT<br>US"
+        "contact-title": "CONTACT<br>US",
+        
+        // SIDEBAR
+        "nav-home": "Home",
+        "nav-roadmap": "Roadmap",
+        "nav-corridor": "The Corridor",
+        "nav-arch": "Architecture",
+        "nav-decarb": "Decarbonization",
+        "nav-partners": "Partners",
+        "nav-contact": "Contact"
     }
 };
 
