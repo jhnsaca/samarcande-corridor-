@@ -249,9 +249,6 @@ blockquote { font-size: 1.5rem; font-style: italic; color: var(--text-color); op
 .partners-section { padding: 150px 50px; background: var(--bg-gradient-main); }
 .founders-block, .partners-block { margin-bottom: 60px; }
 
-/* Ajustement pour fondateur unique */
-.founders-grid.single-founder { justify-content: flex-start; }
-
 /* Grille des Zones Internationales */
 .zones-grid {
     display: grid;
