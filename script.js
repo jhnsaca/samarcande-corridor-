@@ -247,6 +247,13 @@ const translations = {
         "role2": "Foncier & Énergie",
         "partners": "PARTENAIRES TERRITORIAUX",
         "contact-title": "NOUS<br>CONTACTER",
+         // NOUVELLES ZONES
+        "partners-title": "PARTENAIRES INTERNATIONAUX",
+        "zone-asia": "ZONE ASIE DU SUD-EST",
+        "zone-turkey": "TURQUIE",
+        "zone-gulf": "PAYS DU GOLFE",
+        "zone-indo": "INDO-PACIFIQUE",
+        "zone-europe": "EUROPE (AXE MÉDITERRANÉE / SUD)",
         
         // SIDEBAR
         "nav-home": "Accueil",
@@ -305,6 +312,14 @@ const translations = {
         "role2": "Land & Energy",
         "partners": "TERRITORIAL PARTNERS",
         "contact-title": "CONTACT<br>US",
+
+        // NEW ZONES TRANSLATED
+        "partners-title": "INTERNATIONAL PARTNERS",
+        "zone-asia": "SOUTH EAST ASIA ZONE",
+        "zone-turkey": "TURKEY",
+        "zone-gulf": "GULF COUNTRIES",
+        "zone-indo": "INDO-PACIFIC",
+        "zone-europe": "EUROPE (MEDITERRANEAN AXIS / SOUTH)",
         
         // SIDEBAR
         "nav-home": "Home",
